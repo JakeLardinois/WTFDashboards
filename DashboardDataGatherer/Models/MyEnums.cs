@@ -14,4 +14,9 @@ namespace DashboardDataGatherer.Models
         Hold = 'H'
     }
 
+    public enum WOMetricType
+    {
+        AnnualWOAvgDaysOpenByCategory = 'A', //Annual Average Duration Open per Work Order over the past year
+        CurrentWOAvgDaysOpenByCategory = 'C' //Current Average Duration Open per Work Order in the current bank of Work Orders
+    }
 }

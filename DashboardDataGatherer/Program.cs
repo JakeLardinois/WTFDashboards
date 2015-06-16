@@ -13,25 +13,39 @@ namespace DashboardDataGatherer
     {
         static void Main(string[] args)
         {
-            //var objAnnualMP2 = new MP2(DateTime.Now.AddYears(-1).Date, DateTime.Now.Date);
-            //var objOpenReadyHoldMP2 = new MP2(new List<Status> { Status.Open, Status.Ready, Status.Hold});
+            DashboardDbEntities db = new DashboardDbEntities();
             List<DurationCategory> DurationCategories;
-            var objAnnualMP2ByCategory = new MP2(out DurationCategories, DateTime.Now.AddYears(-1).Date, DateTime.Now.Date);
 
-           // Console.WriteLine(objAnnualMP2.AverageWODuration);
-            //Console.WriteLine(objOpenReadyHoldMP2.AverageWODuration);
+
+            var objAnnualMP2ByCategory = new WorkOrderData(out DurationCategories, DateTime.Now.AddYears(-1).Date, DateTime.Now.Date);
             foreach (var objDurationCategory in DurationCategories)
-                Console.WriteLine("Category: {0, 10} AvgWODuration: {1, 4} WO Count: {2, 3}", 
-                    objDurationCategory.Category, objDurationCategory.AverageWODuration, objDurationCategory.WOCount);
+                db.WorkOrderMetrics.Add(new WorkOrderMetric
+                {
+                    DateCreated = DateTime.Now.Date,
+                    MetricType = (char)WOMetricType.AnnualWOAvgDaysOpenByCategory + string.Empty,
+                    WOCategory = objDurationCategory.Category,
+                    AverageWODuration = objDurationCategory.AverageWODuration,
+                    WOCount = objDurationCategory.WOCount
+                });
+            db.Database.ExecuteSqlCommand(QueryDefinitions.GetQuery("DeleteWOMetricByTypeAndDate", //Delete any work orders that may exist for this day to avoid duplicates...
+                new string[] { (char)WOMetricType.AnnualWOAvgDaysOpenByCategory + string.Empty, DateTime.Now.Date.ToShortDateString()}));
+            db.SaveChanges(); //Save the WOMetrics to the database...
 
-            Console.WriteLine();
-            Console.WriteLine();
-
-            var objOpenReadyHoldMP2ByCategory = new MP2(out DurationCategories, new List<Status> { Status.Open, Status.Ready, Status.Hold });
+            var objOpenReadyHoldMP2ByCategory = new WorkOrderData(out DurationCategories, new List<Status> { Status.Open, Status.Ready, Status.Hold });
             foreach (var objDurationCategory in DurationCategories)
-                Console.WriteLine("Category: {0, 10} AvgWODuration: {1, 4} WO Count: {2, 3}",
-                    objDurationCategory.Category, objDurationCategory.AverageWODuration, objDurationCategory.WOCount);
+                db.WorkOrderMetrics.Add(new WorkOrderMetric
+                {
+                    DateCreated = DateTime.Now.Date,
+                    MetricType = (char)WOMetricType.CurrentWOAvgDaysOpenByCategory + string.Empty,
+                    WOCategory = objDurationCategory.Category,
+                    AverageWODuration = objDurationCategory.AverageWODuration,
+                    WOCount = objDurationCategory.WOCount
+                });
+            db.Database.ExecuteSqlCommand(QueryDefinitions.GetQuery("DeleteWOMetricByTypeAndDate",
+                new string[] { (char)WOMetricType.CurrentWOAvgDaysOpenByCategory + string.Empty, DateTime.Now.Date.ToShortDateString() }));
+            db.SaveChanges();
 
+            Console.WriteLine("Successfully Completed!");
             Console.ReadLine();
         }
     }

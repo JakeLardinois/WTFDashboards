@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DashboardDataGatherer.Models
 {
-    public class MP2
+    public class WorkOrderData
     {
         public int? AverageWODuration {
             get
@@ -25,7 +25,7 @@ namespace DashboardDataGatherer.Models
         public IEnumerable<WO> WorkOrders { get; set; }
 
 
-        public MP2(DateTime dtmStartDate, DateTime dtmEndDate)
+        public WorkOrderData(DateTime dtmStartDate, DateTime dtmEndDate)
         {
             using (var db = new mp250dbDB())
             {
@@ -36,7 +36,7 @@ namespace DashboardDataGatherer.Models
             }
         }
 
-        public MP2(out List<DurationCategory> DurationCategories, DateTime dtmStartDate, DateTime dtmEndDate)
+        public WorkOrderData(out List<DurationCategory> DurationCategories, DateTime dtmStartDate, DateTime dtmEndDate)
         {
             using (var db = new mp250dbDB())
             {
@@ -49,7 +49,7 @@ namespace DashboardDataGatherer.Models
             DurationCategories = SegmentByWOType();
         }
 
-        public MP2(List<Status> StatusList)
+        public WorkOrderData(List<Status> StatusList)
         {
             using (var db = new mp250dbDB())
             {
@@ -60,7 +60,7 @@ namespace DashboardDataGatherer.Models
             }
         }
 
-        public MP2(out List<DurationCategory> DurationCategories, List<Status> StatusList)
+        public WorkOrderData(out List<DurationCategory> DurationCategories, List<Status> StatusList)
         {
             using (var db = new mp250dbDB())
             {
@@ -103,7 +103,7 @@ namespace DashboardDataGatherer.Models
 
     public class DurationCategory
     {
-        public int? AverageWODuration { get; set; }
+        public decimal? AverageWODuration { get; set; }
         public string Category { get; set; }
         public int WOCount { get; set; }
     }

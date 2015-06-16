@@ -59,5 +59,16 @@ namespace DashboardDataGatherer.Models {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE
+        ///FROM WorkOrderMetrics
+        ///WHERE MetricType = &apos;~p0&apos; AND DateCreated = &apos;~p1&apos;.
+        /// </summary>
+        internal static string DeleteWOMetricByTypeAndDate {
+            get {
+                return ResourceManager.GetString("DeleteWOMetricByTypeAndDate", resourceCulture);
+            }
+        }
     }
 }
