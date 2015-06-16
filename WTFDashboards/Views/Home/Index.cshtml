@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+<img src="/WorkOrders/CurrentWOAverages" alt="" />
+<img src="/WorkOrders/AnnualWOAverages" alt="" /> 
+<img src="/WorkOrders/WOAvgCurrentToAnnualComparison" alt="" />
+<img src="/WorkOrders/WOAvgAnnualToCurrentComparison" alt="" />
+<img src="/WorkOrders/CurrentWOAvgPerformance" alt="" />
+<img src="/WorkOrders/AnnualWOAvgPerformance" alt="" />
+
+@section styles{
+
+}
+
+@section Scripts{
+    <script type="text/javascript" src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/index")">
+    </script>
+}
