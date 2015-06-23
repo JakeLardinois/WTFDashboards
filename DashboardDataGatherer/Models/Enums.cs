@@ -19,4 +19,11 @@ namespace DashboardDataGatherer.Models
         AnnualWOAvgDaysOpenByCategory = 'A', //Annual Average Duration Open per Work Order over the past year
         CurrentWOAvgDaysOpenByCategory = 'C' //Current Average Duration Open per Work Order in the current bank of Work Orders
     }
+
+    public enum InventoryCostSource
+    {
+        SytelineCostReport,
+        SytelineItemWhse,
+        FactTrak
+    }
 }

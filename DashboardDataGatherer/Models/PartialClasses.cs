@@ -4,6 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Data.Entity.Infrastructure;
+
+
+namespace DashboardDataGatherer
+{
+    public partial class SytelineDbEntities
+    {
+
+        public void SetCommandTimeOut(int Timeout)
+        {
+            var objectContext = (this as IObjectContextAdapter).ObjectContext;
+
+
+            objectContext.CommandTimeout = Timeout;
+        }
+    }
+
+    public partial class FactTrakEntities
+    {
+
+        public void SetCommandTimeOut(int Timeout)
+        {
+            var objectContext = (this as IObjectContextAdapter).ObjectContext;
+
+
+            objectContext.CommandTimeout = Timeout;
+        }
+    }
+}
+
 namespace DashboardDataGatherer.Models
 {
     public partial class WO

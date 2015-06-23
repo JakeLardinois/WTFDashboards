@@ -11,6 +11,21 @@
     <AssemblyName>DashboardDataGatherer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,9 +84,43 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Dashboard.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\WorkOrderData.cs" />
-    <Compile Include="Models\MyEnums.cs" />
-    <Compile Include="Models\MyExtensionMethods.cs" />
+    <Compile Include="FactTrak.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactTrak.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FactTrak.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactTrak.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FactTrak.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactTrak.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryCostMetric.cs">
+      <DependentUpon>Dashboard.tt</DependentUpon>
+    </Compile>
+    <Compile Include="itemprice.cs">
+      <DependentUpon>Syteline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="job.cs">
+      <DependentUpon>Syteline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lc_ea_item_whse_loc_facts.cs">
+      <DependentUpon>FactTrak.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InventoryCostData.cs" />
+    <Compile Include="Models\InventoryDataUploader.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemWhse.cs" />
+    <Compile Include="Models\MatlTran.cs" />
+    <Compile Include="Models\WODurationCategory.cs" />
+    <Compile Include="Models\WODataUploader.cs" />
+    <Compile Include="Models\WOData.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ExtensionMethods.cs" />
     <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\QueryDefs.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -86,6 +135,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Syteline.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Syteline.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Syteline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Syteline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Syteline.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Syteline.edmx</DependentUpon>
+    </Compile>
     <Compile Include="WorkOrderMetric.cs">
       <DependentUpon>Dashboard.tt</DependentUpon>
     </Compile>
@@ -108,6 +172,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Dashboard.edmx</DependentUpon>
       <LastGenOutput>Dashboard.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="FactTrak.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FactTrak.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="FactTrak.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FactTrak.edmx</DependentUpon>
+      <LastGenOutput>FactTrak.Context.cs</LastGenOutput>
+    </None>
+    <None Include="FactTrak.edmx.diagram">
+      <DependentUpon>FactTrak.edmx</DependentUpon>
+    </None>
+    <None Include="FactTrak.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FactTrak.edmx</DependentUpon>
+      <LastGenOutput>FactTrak.cs</LastGenOutput>
     </None>
     <None Include="LinqToDB.Templates\!ReadMe.LinqToDB.md" />
     <None Include="LinqToDB.Templates\DataAnnotations.ttinclude" />
@@ -132,6 +213,23 @@
     <None Include="LinqToDB.Templates\T4Model.ttinclude" />
     <None Include="LinqToDB.Templates\Validation.ttinclude" />
     <None Include="packages.config" />
+    <EntityDeploy Include="Syteline.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Syteline.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Syteline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Syteline.edmx</DependentUpon>
+      <LastGenOutput>Syteline.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Syteline.edmx.diagram">
+      <DependentUpon>Syteline.edmx</DependentUpon>
+    </None>
+    <None Include="Syteline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Syteline.edmx</DependentUpon>
+      <LastGenOutput>Syteline.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="mp250db.tt">
@@ -148,6 +246,23 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

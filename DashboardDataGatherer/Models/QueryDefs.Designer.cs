@@ -70,5 +70,131 @@ namespace DashboardDataGatherer.Models {
                 return ResourceManager.GetString("DeleteWOMetricByTypeAndDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT lc_ea_item_whse_loc_facts.Warehouse
+        ///      ,lc_ea_item_whse_loc_facts.Item_Nbr
+        ///      ,lc_ea_item_whse_loc_facts.Record_Date
+        ///      ,lc_ea_item_whse_loc_facts.Whse_Qty_On_Hand
+        ///      ,lc_ea_item_whse_loc_facts.Whse_Inv_Value
+        ///      ,lc_ea_items.Purch_Manuf
+        ///FROM lc_ea_item_whse_loc_facts INNER JOIN lc_ea_items
+        ///	ON lc_ea_item_whse_loc_facts.Item_Nbr = lc_ea_items.Item_Nbr
+        ///WHERE Record_Date &gt;= &apos;~p0&apos; AND Record_Date &lt;= &apos;~p1&apos; AND Record_Type = &apos;Whse&apos; AND Whse_Qty_On_Hand &gt; 0.
+        /// </summary>
+        internal static string SelectFactTrakItemCostsByDate {
+            get {
+                return ResourceManager.GetString("SelectFactTrakItemCostsByDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT *
+        ///FROM item
+        ///WHERE item in (~p0).
+        /// </summary>
+        internal static string SelectItemByItemList {
+            get {
+                return ResourceManager.GetString("SelectItemByItemList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT item
+        ///      ,effect_date
+        ///      ,curr_code
+        ///      ,unit_price1
+        ///      ,unit_price2
+        ///      ,unit_price3
+        ///      ,unit_price4
+        ///      ,unit_price5
+        ///      ,unit_price6
+        ///      ,reprice
+        ///      ,brk_qty##1 AS brk_qty__1
+        ///      ,brk_qty##2 AS brk_qty__2
+        ///      ,brk_qty##3 AS brk_qty__3
+        ///      ,brk_qty##4 AS brk_qty__4
+        ///      ,brk_qty##5 AS brk_qty__5
+        ///      ,brk_price##1 AS brk_price__1
+        ///      ,brk_price##2 AS brk_price__2
+        ///      ,brk_price##3 AS brk_price__3
+        ///      ,brk_price##4 AS brk_price__4
+        ///      ,brk_p [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SelectItemPricesByItemList {
+            get {
+                return ResourceManager.GetString("SelectItemPricesByItemList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT *
+        ///FROM itemwhse
+        ///WHERE item in (~p0).
+        /// </summary>
+        internal static string SelectItemWhseByItemList {
+            get {
+                return ResourceManager.GetString("SelectItemWhseByItemList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT itemwhse.whse AS Warehouse, itemwhse.item AS Item, item.p_m_t_code AS Source, itemwhse.qty_on_hand AS QtyOnHand, 
+        ///	item.unit_cost AS UnitCost, (itemwhse.qty_on_hand * item.unit_cost) AS TotalCost
+        ///FROM itemwhse
+        ///	INNER JOIN item ON item.item = itemwhse.item
+        ///WHERE itemwhse.qty_on_hand &gt; 0.
+        /// </summary>
+        internal static string SelectItemWhseItemCosts {
+            get {
+                return ResourceManager.GetString("SelectItemWhseItemCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT itemwhse.whse AS Warehouse, item.p_m_t_code AS Source, SUM(itemwhse.qty_on_hand * item.unit_cost) AS TotalCost
+        ///FROM itemwhse
+        ///	INNER JOIN item ON item.item = itemwhse.item
+        ///WHERE itemwhse.qty_on_hand &gt; 0
+        ///GROUP BY itemwhse.whse, item.p_m_t_code.
+        /// </summary>
+        internal static string SelectItemWhseTypeCosts {
+            get {
+                return ResourceManager.GetString("SelectItemWhseTypeCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT whse, item, SUM(wip_total - wip_complete) AS WIP_Remaining
+        ///FROM job
+        ///WHERE (wip_total - wip_complete &lt;&gt; 0)
+        ///GROUP BY whse, item.
+        /// </summary>
+        internal static string SelectItemWIPRemaining {
+            get {
+                return ResourceManager.GetString("SelectItemWIPRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT item, MAX(trans_date) AS trans_date
+        ///  FROM matltran
+        ///  WHERE item IN (~p0) AND (trans_type = &apos;S&apos; OR trans_type = &apos;F&apos;)
+        ///  GROUP BY item.
+        /// </summary>
+        internal static string SelectRecentMatlTranByItemList {
+            get {
+                return ResourceManager.GetString("SelectRecentMatlTranByItemList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GRANT EXECUTE ON [WTF_App].[dbo].Rpt_InventoryCostSp TO WTFApp.
+        /// </summary>
+        internal static string StoredProcedurePermissions {
+            get {
+                return ResourceManager.GetString("StoredProcedurePermissions", resourceCulture);
+            }
+        }
     }
 }

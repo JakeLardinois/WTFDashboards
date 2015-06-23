@@ -14,8 +14,10 @@ namespace WTFDashboards
 
             bundles.Add(new ScriptBundle("~/bundles/jquery", "http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryui", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.js")); //Note that you must put your version of JqueryUI in jquery.themeswitcher.js or jquery.themeswitcher.min.js...
-            bundles.Add(new ScriptBundle("~/bundles/index").Include(
-                        "~/Scripts/index.js"));
+            bundles.Add(new ScriptBundle("~/bundles/layout").Include(
+                        "~/Scripts/layout.js"));
+            bundles.Add(new ScriptBundle("~/bundles/themeswitcher").Include(
+                        "~/Scripts/jquery.themeswitcher.js"));
 
 
             bundles.Add(new StyleBundle("~/Content/reset").Include(

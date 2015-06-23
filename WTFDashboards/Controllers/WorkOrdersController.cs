@@ -11,9 +11,15 @@ namespace WTFDashboards.Controllers
 {
     public class WorkOrdersController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public FileResult AnnualWOAverages()
         {
             var AnnualWOData = new WOData(WOMetricType.AnnualWOAvgDaysOpenByCategory, 1);
+            AnnualWOData.CollectionDataName = "History";
             var WOChart = new WOChart(WOChartType.Single, AnnualWOData, "Annual WO Avg Days Open By Category");
 
             return (File(WOChart.chartStream.GetBuffer(), @"image/png"));
@@ -22,6 +28,7 @@ namespace WTFDashboards.Controllers
         public FileResult CurrentWOAverages()
         {
             var CurrentWOData = new WOData(WOMetricType.CurrentWOAvgDaysOpenByCategory, 1);
+            CurrentWOData.CollectionDataName = "Current";
             var WOChart = new WOChart(WOChartType.Single, CurrentWOData, "Current WO Avg Days Open By Category");
 
             return (File(WOChart.chartStream.GetBuffer(), @"image/png"));
@@ -34,7 +41,9 @@ namespace WTFDashboards.Controllers
             var CombinedData = new WOData();
 
             CombinedData.CollectionData.AddRange(CurrentWOData.CollectionData);
+            CombinedData.CollectionDataName = "Current"; //displays on the legend...
             CombinedData.CollectionComparisonData.AddRange(AnnualWOData.CollectionData);
+            CombinedData.ComparisonDataName = "History";
             CombinedData.AlignComparisonDataSets();
 
             var WOChart = new WOChart(WOChartType.Comparison, CombinedData, "Current to History WO Avg Days Open Comparison");
@@ -49,7 +58,9 @@ namespace WTFDashboards.Controllers
             var CombinedData = new WOData();
 
             CombinedData.CollectionData.AddRange(AnnualWOData.CollectionData);
+            CombinedData.CollectionDataName = "History";
             CombinedData.CollectionComparisonData.AddRange(CurrentWOData.CollectionData);
+            CombinedData.ComparisonDataName = "Current";
             CombinedData.AlignComparisonDataSets();
 
             var WOChart = new WOChart(WOChartType.Comparison, CombinedData, "History to Current WO Avg Days Open Comparison");

@@ -122,4 +122,97 @@
 FROM WorkOrderMetrics
 WHERE MetricType = '~p0' AND DateCreated = '~p1'</value>
   </data>
+  <data name="SelectFactTrakItemCostsByDate" xml:space="preserve">
+    <value>SELECT lc_ea_item_whse_loc_facts.Warehouse
+      ,lc_ea_item_whse_loc_facts.Item_Nbr
+      ,lc_ea_item_whse_loc_facts.Record_Date
+      ,lc_ea_item_whse_loc_facts.Whse_Qty_On_Hand
+      ,lc_ea_item_whse_loc_facts.Whse_Inv_Value
+      ,lc_ea_items.Purch_Manuf
+FROM lc_ea_item_whse_loc_facts INNER JOIN lc_ea_items
+	ON lc_ea_item_whse_loc_facts.Item_Nbr = lc_ea_items.Item_Nbr
+WHERE Record_Date &gt;= '~p0' AND Record_Date &lt;= '~p1' AND Record_Type = 'Whse' AND Whse_Qty_On_Hand &gt; 0</value>
+  </data>
+  <data name="SelectItemByItemList" xml:space="preserve">
+    <value>SELECT *
+FROM item
+WHERE item in (~p0)</value>
+  </data>
+  <data name="SelectItemPricesByItemList" xml:space="preserve">
+    <value>SELECT item
+      ,effect_date
+      ,curr_code
+      ,unit_price1
+      ,unit_price2
+      ,unit_price3
+      ,unit_price4
+      ,unit_price5
+      ,unit_price6
+      ,reprice
+      ,brk_qty##1 AS brk_qty__1
+      ,brk_qty##2 AS brk_qty__2
+      ,brk_qty##3 AS brk_qty__3
+      ,brk_qty##4 AS brk_qty__4
+      ,brk_qty##5 AS brk_qty__5
+      ,brk_price##1 AS brk_price__1
+      ,brk_price##2 AS brk_price__2
+      ,brk_price##3 AS brk_price__3
+      ,brk_price##4 AS brk_price__4
+      ,brk_price##5 AS brk_price__5
+      ,base_code##1 AS base_code__1
+      ,base_code##2 AS base_code__2
+      ,base_code##3 AS base_code__3
+      ,base_code##4 AS base_code__4
+      ,base_code##5 AS base_code__5
+      ,dol_percent##1 AS dol_percent__1
+      ,dol_percent##2 AS dol_percent__2
+      ,dol_percent##3 AS dol_percent__3
+      ,dol_percent##4 AS dol_percent__4
+      ,dol_percent##5 AS dol_percent__5
+      ,pricecode
+      ,NoteExistsFlag
+      ,RecordDate
+      ,RowPointer
+      ,CreatedBy
+      ,UpdatedBy
+      ,CreateDate
+      ,InWorkflow
+      ,uf_pref_type
+  FROM itemprice
+  WHERE item in (~p0)</value>
+  </data>
+  <data name="SelectItemWhseByItemList" xml:space="preserve">
+    <value>SELECT *
+FROM itemwhse
+WHERE item in (~p0)</value>
+  </data>
+  <data name="SelectItemWhseItemCosts" xml:space="preserve">
+    <value>SELECT itemwhse.whse AS Warehouse, itemwhse.item AS Item, item.p_m_t_code AS Source, itemwhse.qty_on_hand AS QtyOnHand, 
+	item.unit_cost AS UnitCost, (itemwhse.qty_on_hand * item.unit_cost) AS TotalCost
+FROM itemwhse
+	INNER JOIN item ON item.item = itemwhse.item
+WHERE itemwhse.qty_on_hand &gt; 0</value>
+  </data>
+  <data name="SelectItemWhseTypeCosts" xml:space="preserve">
+    <value>SELECT itemwhse.whse AS Warehouse, item.p_m_t_code AS Source, SUM(itemwhse.qty_on_hand * item.unit_cost) AS TotalCost
+FROM itemwhse
+	INNER JOIN item ON item.item = itemwhse.item
+WHERE itemwhse.qty_on_hand &gt; 0
+GROUP BY itemwhse.whse, item.p_m_t_code</value>
+  </data>
+  <data name="SelectItemWIPRemaining" xml:space="preserve">
+    <value>SELECT whse, item, SUM(wip_total - wip_complete) AS WIP_Remaining
+FROM job
+WHERE (wip_total - wip_complete &lt;&gt; 0)
+GROUP BY whse, item</value>
+  </data>
+  <data name="SelectRecentMatlTranByItemList" xml:space="preserve">
+    <value>SELECT item, MAX(trans_date) AS trans_date
+  FROM matltran
+  WHERE item IN (~p0) AND (trans_type = 'S' OR trans_type = 'F')
+  GROUP BY item</value>
+  </data>
+  <data name="StoredProcedurePermissions" xml:space="preserve">
+    <value>GRANT EXECUTE ON [WTF_App].[dbo].Rpt_InventoryCostSp TO WTFApp</value>
+  </data>
 </root>

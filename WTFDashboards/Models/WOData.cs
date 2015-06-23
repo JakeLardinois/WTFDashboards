@@ -10,7 +10,8 @@ namespace WTFDashboards.Models
         public List<WorkOrderMetric> CollectionData { get; set; }
         public List<WorkOrderMetric> CollectionComparisonData { get; set; }
         public List<List<WorkOrderMetric>> SeriesDataSets { get; set; }
-
+        public string CollectionDataName { get; set; }
+        public string ComparisonDataName { get; set; }
 
         public WOData()
         {

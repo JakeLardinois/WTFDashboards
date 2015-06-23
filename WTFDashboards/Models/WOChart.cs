@@ -42,14 +42,14 @@ namespace WTFDashboards.Models
                 case WOChartType.Single:
                     chart.Titles.Add(CreateTitle(Title));
                     //chart.Legends.Add(CreateLegend());
-                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, Color.FromArgb(198, 99, 99), "WO Category"));
+                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, Color.FromArgb(198, 99, 99), WOData.CollectionDataName));
                     chart.ChartAreas.Add(CreateChartArea());
                     break;
                 case WOChartType.Comparison:
                     chart.Titles.Add(CreateTitle(Title));
-                    //chart.Legends.Add(CreateLegend());
-                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, Color.FromArgb(198, 99, 99), "WO Category"));
-                    chart.Series.Add(CreateSeries(WOData.CollectionComparisonData, SeriesChartType.Column, Color.FromArgb(153, 0, 76), "WO Category Comparison"));
+                    chart.Legends.Add(CreateLegend());
+                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, Color.FromArgb(198, 99, 99), WOData.CollectionDataName));
+                    chart.Series.Add(CreateSeries(WOData.CollectionComparisonData, SeriesChartType.Column, Color.FromArgb(153, 0, 76), WOData.ComparisonDataName));
                     chart.ChartAreas.Add(CreateChartArea());
                     break;
                 case WOChartType.Performance:
@@ -152,7 +152,7 @@ namespace WTFDashboards.Models
             chartArea.AxisX.MajorGrid.LineColor = Color.FromArgb(64, 64, 64, 64);
             chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(64, 64, 64, 64);
             chartArea.AxisX.Interval = 1; //makes the XAxis labels display...
-            chartArea.AxisX.Title = "Category";
+            chartArea.AxisX.Title = "";
             chartArea.AxisY.Title = "Days";
 
             return chartArea;

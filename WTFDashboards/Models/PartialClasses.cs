@@ -10,3 +10,4 @@ namespace WTFDashboards
         public string WOCategoryNonNullable { get { return string.IsNullOrEmpty(WOCategory) ? "Empty" : WOCategory; } }
     }
 }
+

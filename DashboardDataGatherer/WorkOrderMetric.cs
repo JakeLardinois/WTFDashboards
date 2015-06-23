@@ -18,7 +18,7 @@ namespace DashboardDataGatherer
         public string WOCategory { get; set; }
         public Nullable<int> WOCount { get; set; }
         public Nullable<decimal> AverageWODuration { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
+        public System.DateTime DateCreated { get; set; }
         public string MetricType { get; set; }
     }
 }

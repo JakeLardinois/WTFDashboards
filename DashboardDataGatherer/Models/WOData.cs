@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DashboardDataGatherer.Models
 {
-    public class WorkOrderData
+    public class WOData
     {
         public int? AverageWODuration {
             get
@@ -25,7 +25,7 @@ namespace DashboardDataGatherer.Models
         public IEnumerable<WO> WorkOrders { get; set; }
 
 
-        public WorkOrderData(DateTime dtmStartDate, DateTime dtmEndDate)
+        public WOData(DateTime dtmStartDate, DateTime dtmEndDate)
         {
             using (var db = new mp250dbDB())
             {
@@ -36,7 +36,7 @@ namespace DashboardDataGatherer.Models
             }
         }
 
-        public WorkOrderData(out List<DurationCategory> DurationCategories, DateTime dtmStartDate, DateTime dtmEndDate)
+        public WOData(out List<WODurationCategory> DurationCategories, DateTime dtmStartDate, DateTime dtmEndDate)
         {
             using (var db = new mp250dbDB())
             {
@@ -49,7 +49,7 @@ namespace DashboardDataGatherer.Models
             DurationCategories = SegmentByWOType();
         }
 
-        public WorkOrderData(List<Status> StatusList)
+        public WOData(List<Status> StatusList)
         {
             using (var db = new mp250dbDB())
             {
@@ -60,7 +60,7 @@ namespace DashboardDataGatherer.Models
             }
         }
 
-        public WorkOrderData(out List<DurationCategory> DurationCategories, List<Status> StatusList)
+        public WOData(out List<WODurationCategory> DurationCategories, List<Status> StatusList)
         {
             using (var db = new mp250dbDB())
             {
@@ -72,9 +72,9 @@ namespace DashboardDataGatherer.Models
             DurationCategories = SegmentByWOType();
         }
 
-        private List<DurationCategory> SegmentByWOType()
+        private List<WODurationCategory> SegmentByWOType()
         {
-            var DurationCategories = new List<DurationCategory>();
+            var DurationCategories = new List<WODurationCategory>();
             var categories = WorkOrders
                 .GroupBy(w => string.IsNullOrEmpty(w.WOTYPE) ? w.WOTYPE : w.WOTYPE.ToUpper())
                 .Select(w => new { w.Key });
@@ -91,20 +91,11 @@ namespace DashboardDataGatherer.Models
                         .Where(w => w.WOTYPE.ToUpper().Equals(objCategory.Key.ToUpper()));
                 
                 if (WorkOrders.Count() > 0)
-                    DurationCategories.Add(new DurationCategory { Category = objCategory.Key, AverageWODuration = this.AverageWODuration, WOCount = WorkOrders.Count() });
+                    DurationCategories.Add(new WODurationCategory { Category = objCategory.Key, AverageWODuration = this.AverageWODuration, WOCount = WorkOrders.Count() });
             }
             WorkOrders = objTempWorkOrders;
 
             return DurationCategories;
         }
-    }
-
-
-
-    public class DurationCategory
-    {
-        public decimal? AverageWODuration { get; set; }
-        public string Category { get; set; }
-        public int WOCount { get; set; }
     }
 }

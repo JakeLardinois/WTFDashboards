@@ -6,8 +6,19 @@
     <edmx:StorageModels>
     <Schema Namespace="DashboardData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="DashboardDataStoreContainer">
+          <EntitySet Name="InventoryCostMetrics" EntityType="DashboardData.Store.InventoryCostMetrics" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WorkOrderMetrics" EntityType="DashboardData.Store.WorkOrderMetrics" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="InventoryCostMetrics">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Warehouse" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cost" Type="decimal" />
+          <Property Name="DateCreated" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="WorkOrderMetrics">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,7 +27,7 @@
           <Property Name="WOCategory" Type="nvarchar" MaxLength="50" />
           <Property Name="WOCount" Type="int" />
           <Property Name="AverageWODuration" Type="decimal" />
-          <Property Name="DateCreated" Type="date" />
+          <Property Name="DateCreated" Type="date" Nullable="false" />
           <Property Name="MetricType" Type="nvarchar" MaxLength="50" />
         </EntityType>
       </Schema></edmx:StorageModels>
@@ -25,6 +36,7 @@
       <Schema Namespace="DashboardData" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DashboardDbEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="WorkOrderMetrics" EntityType="DashboardData.WorkOrderMetric" />
+          <EntitySet Name="InventoryCostMetrics" EntityType="DashboardData.InventoryCostMetric" />
         </EntityContainer>
         <EntityType Name="WorkOrderMetric">
           <Key>
@@ -34,8 +46,18 @@
           <Property Type="String" Name="WOCategory" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="WOCount" />
           <Property Type="Decimal" Name="AverageWODuration" Precision="18" Scale="0" />
-          <Property Type="DateTime" Name="DateCreated" Precision="0" />
+          <Property Type="DateTime" Name="DateCreated" Precision="0" Nullable="false" />
           <Property Type="String" Name="MetricType" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InventoryCostMetric">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="InventoryType" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Warehouse" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Cost" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="0" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -51,6 +73,17 @@
                 <ScalarProperty Name="AverageWODuration" ColumnName="AverageWODuration" />
                 <ScalarProperty Name="WOCount" ColumnName="WOCount" />
                 <ScalarProperty Name="WOCategory" ColumnName="WOCategory" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryCostMetrics">
+            <EntityTypeMapping TypeName="DashboardData.InventoryCostMetric">
+              <MappingFragment StoreEntitySet="InventoryCostMetrics">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+                <ScalarProperty Name="InventoryType" ColumnName="InventoryType" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

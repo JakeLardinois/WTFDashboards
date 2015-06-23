@@ -17,19 +17,27 @@
     <div id="container">
         <header>
             <div>
-                <nav></nav>
+                <nav class="center">
+                    @Html.ActionLink("Home", "Index", "Home", null, new {@class = "button"})
+                    @Html.ActionLink("Work Orders", "Index", "WorkOrders", null, new {@class = "button"})
+                    @Html.ActionLink("Inventory", "Index", "Inventory", null, new {@class = "button"})
+                </nav>
             </div>
         </header>
         <div id="content">
+            <div id="PersonalSwitcher" ></div>
             @RenderBody()
         </div>
         <footer></footer>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/themeswitcher")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript" src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/bundles/layout")">
+    </script>
     <script>
-
+        var sImagesURL = '@Url.Content("~/Content/images/")';
     </script>
 </body>
 </html>

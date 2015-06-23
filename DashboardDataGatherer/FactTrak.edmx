@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FT_OperationalModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FT_OperationalModelStoreContainer">
+          <EntitySet Name="lc_ea_item_whse_loc_facts" EntityType="FT_OperationalModel.Store.lc_ea_item_whse_loc_facts" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="lc_ea_item_whse_loc_facts">
+          <Key>
+            <PropertyRef Name="Site" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Item_Nbr" />
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="Record_Date" />
+            <PropertyRef Name="RowPointer" />
+          </Key>
+          <Property Name="Site" Type="nvarchar" Nullable="false" MaxLength="8" />
+          <Property Name="Warehouse" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="Whse_Code_Type" Type="nvarchar" MaxLength="6" />
+          <Property Name="Item_Nbr" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="Record_Date" Type="datetime" Nullable="false" />
+          <Property Name="Record_Type" Type="nvarchar" MaxLength="10" />
+          <Property Name="Perm_Loc" Type="varchar" MaxLength="3" />
+          <Property Name="Loc_Type" Type="nvarchar" MaxLength="40" />
+          <Property Name="Loc_Desc" Type="nvarchar" MaxLength="40" />
+          <Property Name="Work_Center" Type="nvarchar" MaxLength="6" />
+          <Property Name="Non_Nettable" Type="varchar" MaxLength="3" />
+          <Property Name="Inv_Acct_Unit1" Type="nvarchar" MaxLength="4" />
+          <Property Name="Inv_Acct_Unit2" Type="nvarchar" MaxLength="4" />
+          <Property Name="Inv_Acct_Unit3" Type="nvarchar" MaxLength="4" />
+          <Property Name="Inv_Acct_Unit4" Type="nvarchar" MaxLength="4" />
+          <Property Name="Lbr_Acct_Unit1" Type="nvarchar" MaxLength="4" />
+          <Property Name="Lbr_Acct_Unit2" Type="nvarchar" MaxLength="4" />
+          <Property Name="Lbr_Acct_Unit3" Type="nvarchar" MaxLength="4" />
+          <Property Name="Lbr_Acct_Unit4" Type="nvarchar" MaxLength="4" />
+          <Property Name="Fix_OH_Acct_Unit1" Type="nvarchar" MaxLength="4" />
+          <Property Name="Fix_OH_Acct_Unit2" Type="nvarchar" MaxLength="4" />
+          <Property Name="Fix_OH_Acct_Unit3" Type="nvarchar" MaxLength="4" />
+          <Property Name="Fix_OH_Acct_Unit4" Type="nvarchar" MaxLength="4" />
+          <Property Name="Var_OH_Acct_Unit1" Type="nvarchar" MaxLength="4" />
+          <Property Name="Var_OH_Acct_Unit2" Type="nvarchar" MaxLength="4" />
+          <Property Name="Var_OH_Acct_Unit3" Type="nvarchar" MaxLength="4" />
+          <Property Name="Var_OH_Acct_Unit4" Type="nvarchar" MaxLength="4" />
+          <Property Name="Outside_Acct_Unit1" Type="nvarchar" MaxLength="4" />
+          <Property Name="Outside_Acct_Unit2" Type="nvarchar" MaxLength="4" />
+          <Property Name="Outside_Acct_Unit3" Type="nvarchar" MaxLength="4" />
+          <Property Name="Outside_Acct_Unit4" Type="nvarchar" MaxLength="4" />
+          <Property Name="Inv_Acct" Type="nvarchar" MaxLength="12" />
+          <Property Name="Lbr_Acct" Type="nvarchar" MaxLength="12" />
+          <Property Name="Fix_OH_Acct" Type="nvarchar" MaxLength="12" />
+          <Property Name="Var_OH_Acct" Type="nvarchar" MaxLength="12" />
+          <Property Name="Outside_Acct" Type="nvarchar" MaxLength="12" />
+          <Property Name="Rank" Type="smallint" />
+          <Property Name="Record_Date_Fiscal_Year" Type="nvarchar" MaxLength="4" />
+          <Property Name="Record_Date_Quarter" Type="nvarchar" MaxLength="2" />
+          <Property Name="Record_Date_Period" Type="nvarchar" MaxLength="3" />
+          <Property Name="Loc_Unit_Cost" Type="decimal" Scale="8" />
+          <Property Name="Loc_Matl_Cost" Type="decimal" Scale="8" />
+          <Property Name="Loc_Lbr_Cost" Type="decimal" Scale="8" />
+          <Property Name="Loc_Fix_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Loc_Var_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Loc_Outside_Cost" Type="decimal" Scale="8" />
+          <Property Name="Loc_Qty_On_Hand" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Loc_Qty_Reserved" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Transfer_In_YTD" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Transfer_Out_YTD" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Last_Cnt_Qty_On_Hand" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Non_Nettable" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_On_PO" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Alloc_CO" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Alloc_Transfer_Out" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_WIP" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_On_Hand" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_On_Transfer_In" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Purch_YTD" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Reserved" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Sold_YTD" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Safety_Stock" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Sales_PTD" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Sales_YTD" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Unit_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Last_Unit_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Avg_Unit_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Setup" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Run" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Matl" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Tool" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Fixture" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Other" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Fix_OH" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Var_OH" Type="decimal" Scale="8" />
+          <Property Name="Whse_ASM_Outside" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Setup" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Run" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Matl" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Tool" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Fixture" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Other" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Fix_OH" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Var_OH" Type="decimal" Scale="8" />
+          <Property Name="Whse_Comp_Outside" Type="decimal" Scale="8" />
+          <Property Name="Whse_Sub_Matl" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Unit_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Unit_Mat_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Unit_Duty_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Unit_Freight_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Unit_Broker_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Unit_Insurance_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Unit_Loc_Frt_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Mat_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Duty_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Freight_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Broker_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Insurance_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Loc_Frt_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Matl_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Lbr_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Fix_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Var_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Outside_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Matl_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Lbr_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Fix_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Var_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Curr_Outside_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Avg_Matl_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Avg_Lbr_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Avg_Fix_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Avg_Var_OH_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Avg_Outside_Cost" Type="decimal" Scale="8" />
+          <Property Name="Whse_Inv_Value" Type="decimal" Scale="8" />
+          <Property Name="Loc_Inv_Value" Type="decimal" Scale="8" />
+          <Property Name="Deleted" Type="tinyint" />
+          <Property Name="ObsoleteDate" Type="datetime" />
+          <Property Name="InWorkflow" Type="tinyint" Nullable="false" />
+          <Property Name="NoteExistsFlag" Type="tinyint" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" Nullable="false" />
+          <Property Name="RowPointer" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="UpdatedBy" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="Sched_Type" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FT_OperationalModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FactTrakEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="lc_ea_item_whse_loc_facts" EntityType="FT_OperationalModel.lc_ea_item_whse_loc_facts" />
+        </EntityContainer>
+        <EntityType Name="lc_ea_item_whse_loc_facts">
+          <Key>
+            <PropertyRef Name="Site" />
+            <PropertyRef Name="Warehouse" />
+            <PropertyRef Name="Item_Nbr" />
+            <PropertyRef Name="Location" />
+            <PropertyRef Name="Record_Date" />
+            <PropertyRef Name="RowPointer" />
+          </Key>
+          <Property Name="Site" Type="String" Nullable="false" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Warehouse" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Whse_Code_Type" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="Item_Nbr" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Record_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Record_Type" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Perm_Loc" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="Loc_Type" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Loc_Desc" Type="String" MaxLength="40" Unicode="true" FixedLength="false" />
+          <Property Name="Work_Center" Type="String" MaxLength="6" Unicode="true" FixedLength="false" />
+          <Property Name="Non_Nettable" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="Inv_Acct_Unit1" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Inv_Acct_Unit2" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Inv_Acct_Unit3" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Inv_Acct_Unit4" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Lbr_Acct_Unit1" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Lbr_Acct_Unit2" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Lbr_Acct_Unit3" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Lbr_Acct_Unit4" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Fix_OH_Acct_Unit1" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Fix_OH_Acct_Unit2" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Fix_OH_Acct_Unit3" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Fix_OH_Acct_Unit4" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Var_OH_Acct_Unit1" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Var_OH_Acct_Unit2" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Var_OH_Acct_Unit3" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Var_OH_Acct_Unit4" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Outside_Acct_Unit1" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Outside_Acct_Unit2" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Outside_Acct_Unit3" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Outside_Acct_Unit4" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Inv_Acct" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="Lbr_Acct" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="Fix_OH_Acct" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="Var_OH_Acct" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="Outside_Acct" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="Rank" Type="Int16" />
+          <Property Name="Record_Date_Fiscal_Year" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Record_Date_Quarter" Type="String" MaxLength="2" Unicode="true" FixedLength="false" />
+          <Property Name="Record_Date_Period" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+          <Property Name="Loc_Unit_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Matl_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Lbr_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Fix_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Var_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Outside_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Qty_On_Hand" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Loc_Qty_Reserved" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Transfer_In_YTD" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Transfer_Out_YTD" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Last_Cnt_Qty_On_Hand" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Non_Nettable" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_On_PO" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Alloc_CO" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Alloc_Transfer_Out" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_WIP" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_On_Hand" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_On_Transfer_In" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Purch_YTD" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Reserved" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Qty_Sold_YTD" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Safety_Stock" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Sales_PTD" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Sales_YTD" Type="Decimal" Precision="19" Scale="8" />
+          <Property Name="Whse_Unit_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Last_Unit_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Avg_Unit_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Setup" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Run" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Matl" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Tool" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Fixture" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Other" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Fix_OH" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Var_OH" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_ASM_Outside" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Setup" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Run" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Matl" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Tool" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Fixture" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Other" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Fix_OH" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Var_OH" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Comp_Outside" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Sub_Matl" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Unit_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Unit_Mat_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Unit_Duty_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Unit_Freight_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Unit_Broker_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Unit_Insurance_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Unit_Loc_Frt_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Mat_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Duty_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Freight_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Broker_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Insurance_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Loc_Frt_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Matl_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Lbr_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Fix_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Var_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Outside_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Matl_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Lbr_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Fix_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Var_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Curr_Outside_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Avg_Matl_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Avg_Lbr_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Avg_Fix_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Avg_Var_OH_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Avg_Outside_Cost" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Whse_Inv_Value" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Loc_Inv_Value" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Deleted" Type="Byte" />
+          <Property Name="ObsoleteDate" Type="DateTime" Precision="3" />
+          <Property Name="InWorkflow" Type="Byte" Nullable="false" />
+          <Property Name="NoteExistsFlag" Type="Byte" Nullable="false" />
+          <Property Name="RecordDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RowPointer" Type="Guid" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sched_Type" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FT_OperationalModelStoreContainer" CdmEntityContainer="FactTrakEntities">
+          <EntitySetMapping Name="lc_ea_item_whse_loc_facts">
+            <EntityTypeMapping TypeName="FT_OperationalModel.lc_ea_item_whse_loc_facts">
+              <MappingFragment StoreEntitySet="lc_ea_item_whse_loc_facts">
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+                <ScalarProperty Name="Whse_Code_Type" ColumnName="Whse_Code_Type" />
+                <ScalarProperty Name="Item_Nbr" ColumnName="Item_Nbr" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Record_Date" ColumnName="Record_Date" />
+                <ScalarProperty Name="Record_Type" ColumnName="Record_Type" />
+                <ScalarProperty Name="Perm_Loc" ColumnName="Perm_Loc" />
+                <ScalarProperty Name="Loc_Type" ColumnName="Loc_Type" />
+                <ScalarProperty Name="Loc_Desc" ColumnName="Loc_Desc" />
+                <ScalarProperty Name="Work_Center" ColumnName="Work_Center" />
+                <ScalarProperty Name="Non_Nettable" ColumnName="Non_Nettable" />
+                <ScalarProperty Name="Inv_Acct_Unit1" ColumnName="Inv_Acct_Unit1" />
+                <ScalarProperty Name="Inv_Acct_Unit2" ColumnName="Inv_Acct_Unit2" />
+                <ScalarProperty Name="Inv_Acct_Unit3" ColumnName="Inv_Acct_Unit3" />
+                <ScalarProperty Name="Inv_Acct_Unit4" ColumnName="Inv_Acct_Unit4" />
+                <ScalarProperty Name="Lbr_Acct_Unit1" ColumnName="Lbr_Acct_Unit1" />
+                <ScalarProperty Name="Lbr_Acct_Unit2" ColumnName="Lbr_Acct_Unit2" />
+                <ScalarProperty Name="Lbr_Acct_Unit3" ColumnName="Lbr_Acct_Unit3" />
+                <ScalarProperty Name="Lbr_Acct_Unit4" ColumnName="Lbr_Acct_Unit4" />
+                <ScalarProperty Name="Fix_OH_Acct_Unit1" ColumnName="Fix_OH_Acct_Unit1" />
+                <ScalarProperty Name="Fix_OH_Acct_Unit2" ColumnName="Fix_OH_Acct_Unit2" />
+                <ScalarProperty Name="Fix_OH_Acct_Unit3" ColumnName="Fix_OH_Acct_Unit3" />
+                <ScalarProperty Name="Fix_OH_Acct_Unit4" ColumnName="Fix_OH_Acct_Unit4" />
+                <ScalarProperty Name="Var_OH_Acct_Unit1" ColumnName="Var_OH_Acct_Unit1" />
+                <ScalarProperty Name="Var_OH_Acct_Unit2" ColumnName="Var_OH_Acct_Unit2" />
+                <ScalarProperty Name="Var_OH_Acct_Unit3" ColumnName="Var_OH_Acct_Unit3" />
+                <ScalarProperty Name="Var_OH_Acct_Unit4" ColumnName="Var_OH_Acct_Unit4" />
+                <ScalarProperty Name="Outside_Acct_Unit1" ColumnName="Outside_Acct_Unit1" />
+                <ScalarProperty Name="Outside_Acct_Unit2" ColumnName="Outside_Acct_Unit2" />
+                <ScalarProperty Name="Outside_Acct_Unit3" ColumnName="Outside_Acct_Unit3" />
+                <ScalarProperty Name="Outside_Acct_Unit4" ColumnName="Outside_Acct_Unit4" />
+                <ScalarProperty Name="Inv_Acct" ColumnName="Inv_Acct" />
+                <ScalarProperty Name="Lbr_Acct" ColumnName="Lbr_Acct" />
+                <ScalarProperty Name="Fix_OH_Acct" ColumnName="Fix_OH_Acct" />
+                <ScalarProperty Name="Var_OH_Acct" ColumnName="Var_OH_Acct" />
+                <ScalarProperty Name="Outside_Acct" ColumnName="Outside_Acct" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Record_Date_Fiscal_Year" ColumnName="Record_Date_Fiscal_Year" />
+                <ScalarProperty Name="Record_Date_Quarter" ColumnName="Record_Date_Quarter" />
+                <ScalarProperty Name="Record_Date_Period" ColumnName="Record_Date_Period" />
+                <ScalarProperty Name="Loc_Unit_Cost" ColumnName="Loc_Unit_Cost" />
+                <ScalarProperty Name="Loc_Matl_Cost" ColumnName="Loc_Matl_Cost" />
+                <ScalarProperty Name="Loc_Lbr_Cost" ColumnName="Loc_Lbr_Cost" />
+                <ScalarProperty Name="Loc_Fix_OH_Cost" ColumnName="Loc_Fix_OH_Cost" />
+                <ScalarProperty Name="Loc_Var_OH_Cost" ColumnName="Loc_Var_OH_Cost" />
+                <ScalarProperty Name="Loc_Outside_Cost" ColumnName="Loc_Outside_Cost" />
+                <ScalarProperty Name="Loc_Qty_On_Hand" ColumnName="Loc_Qty_On_Hand" />
+                <ScalarProperty Name="Loc_Qty_Reserved" ColumnName="Loc_Qty_Reserved" />
+                <ScalarProperty Name="Transfer_In_YTD" ColumnName="Transfer_In_YTD" />
+                <ScalarProperty Name="Transfer_Out_YTD" ColumnName="Transfer_Out_YTD" />
+                <ScalarProperty Name="Whse_Last_Cnt_Qty_On_Hand" ColumnName="Whse_Last_Cnt_Qty_On_Hand" />
+                <ScalarProperty Name="Whse_Non_Nettable" ColumnName="Whse_Non_Nettable" />
+                <ScalarProperty Name="Whse_On_PO" ColumnName="Whse_On_PO" />
+                <ScalarProperty Name="Whse_Qty_Alloc_CO" ColumnName="Whse_Qty_Alloc_CO" />
+                <ScalarProperty Name="Whse_Qty_Alloc_Transfer_Out" ColumnName="Whse_Qty_Alloc_Transfer_Out" />
+                <ScalarProperty Name="Whse_Qty_WIP" ColumnName="Whse_Qty_WIP" />
+                <ScalarProperty Name="Whse_Qty_On_Hand" ColumnName="Whse_Qty_On_Hand" />
+                <ScalarProperty Name="Whse_Qty_On_Transfer_In" ColumnName="Whse_Qty_On_Transfer_In" />
+                <ScalarProperty Name="Whse_Qty_Purch_YTD" ColumnName="Whse_Qty_Purch_YTD" />
+                <ScalarProperty Name="Whse_Qty_Reserved" ColumnName="Whse_Qty_Reserved" />
+                <ScalarProperty Name="Whse_Qty_Sold_YTD" ColumnName="Whse_Qty_Sold_YTD" />
+                <ScalarProperty Name="Whse_Safety_Stock" ColumnName="Whse_Safety_Stock" />
+                <ScalarProperty Name="Whse_Sales_PTD" ColumnName="Whse_Sales_PTD" />
+                <ScalarProperty Name="Whse_Sales_YTD" ColumnName="Whse_Sales_YTD" />
+                <ScalarProperty Name="Whse_Unit_Cost" ColumnName="Whse_Unit_Cost" />
+                <ScalarProperty Name="Whse_Last_Unit_Cost" ColumnName="Whse_Last_Unit_Cost" />
+                <ScalarProperty Name="Whse_Avg_Unit_Cost" ColumnName="Whse_Avg_Unit_Cost" />
+                <ScalarProperty Name="Whse_ASM_Setup" ColumnName="Whse_ASM_Setup" />
+                <ScalarProperty Name="Whse_ASM_Run" ColumnName="Whse_ASM_Run" />
+                <ScalarProperty Name="Whse_ASM_Matl" ColumnName="Whse_ASM_Matl" />
+                <ScalarProperty Name="Whse_ASM_Tool" ColumnName="Whse_ASM_Tool" />
+                <ScalarProperty Name="Whse_ASM_Fixture" ColumnName="Whse_ASM_Fixture" />
+                <ScalarProperty Name="Whse_ASM_Other" ColumnName="Whse_ASM_Other" />
+                <ScalarProperty Name="Whse_ASM_Fix_OH" ColumnName="Whse_ASM_Fix_OH" />
+                <ScalarProperty Name="Whse_ASM_Var_OH" ColumnName="Whse_ASM_Var_OH" />
+                <ScalarProperty Name="Whse_ASM_Outside" ColumnName="Whse_ASM_Outside" />
+                <ScalarProperty Name="Whse_Comp_Setup" ColumnName="Whse_Comp_Setup" />
+                <ScalarProperty Name="Whse_Comp_Run" ColumnName="Whse_Comp_Run" />
+                <ScalarProperty Name="Whse_Comp_Matl" ColumnName="Whse_Comp_Matl" />
+                <ScalarProperty Name="Whse_Comp_Tool" ColumnName="Whse_Comp_Tool" />
+                <ScalarProperty Name="Whse_Comp_Fixture" ColumnName="Whse_Comp_Fixture" />
+                <ScalarProperty Name="Whse_Comp_Other" ColumnName="Whse_Comp_Other" />
+                <ScalarProperty Name="Whse_Comp_Fix_OH" ColumnName="Whse_Comp_Fix_OH" />
+                <ScalarProperty Name="Whse_Comp_Var_OH" ColumnName="Whse_Comp_Var_OH" />
+                <ScalarProperty Name="Whse_Comp_Outside" ColumnName="Whse_Comp_Outside" />
+                <ScalarProperty Name="Whse_Sub_Matl" ColumnName="Whse_Sub_Matl" />
+                <ScalarProperty Name="Whse_Curr_Unit_Cost" ColumnName="Whse_Curr_Unit_Cost" />
+                <ScalarProperty Name="Whse_Unit_Mat_Cost" ColumnName="Whse_Unit_Mat_Cost" />
+                <ScalarProperty Name="Whse_Unit_Duty_Cost" ColumnName="Whse_Unit_Duty_Cost" />
+                <ScalarProperty Name="Whse_Unit_Freight_Cost" ColumnName="Whse_Unit_Freight_Cost" />
+                <ScalarProperty Name="Whse_Unit_Broker_Cost" ColumnName="Whse_Unit_Broker_Cost" />
+                <ScalarProperty Name="Whse_Unit_Insurance_Cost" ColumnName="Whse_Unit_Insurance_Cost" />
+                <ScalarProperty Name="Whse_Unit_Loc_Frt_Cost" ColumnName="Whse_Unit_Loc_Frt_Cost" />
+                <ScalarProperty Name="Whse_Curr_Mat_Cost" ColumnName="Whse_Curr_Mat_Cost" />
+                <ScalarProperty Name="Whse_Curr_Duty_Cost" ColumnName="Whse_Curr_Duty_Cost" />
+                <ScalarProperty Name="Whse_Curr_Freight_Cost" ColumnName="Whse_Curr_Freight_Cost" />
+                <ScalarProperty Name="Whse_Curr_Broker_Cost" ColumnName="Whse_Curr_Broker_Cost" />
+                <ScalarProperty Name="Whse_Curr_Insurance_Cost" ColumnName="Whse_Curr_Insurance_Cost" />
+                <ScalarProperty Name="Whse_Curr_Loc_Frt_Cost" ColumnName="Whse_Curr_Loc_Frt_Cost" />
+                <ScalarProperty Name="Whse_Matl_Cost" ColumnName="Whse_Matl_Cost" />
+                <ScalarProperty Name="Whse_Lbr_Cost" ColumnName="Whse_Lbr_Cost" />
+                <ScalarProperty Name="Whse_Fix_OH_Cost" ColumnName="Whse_Fix_OH_Cost" />
+                <ScalarProperty Name="Whse_Var_OH_Cost" ColumnName="Whse_Var_OH_Cost" />
+                <ScalarProperty Name="Whse_Outside_Cost" ColumnName="Whse_Outside_Cost" />
+                <ScalarProperty Name="Whse_Curr_Matl_Cost" ColumnName="Whse_Curr_Matl_Cost" />
+                <ScalarProperty Name="Whse_Curr_Lbr_Cost" ColumnName="Whse_Curr_Lbr_Cost" />
+                <ScalarProperty Name="Whse_Curr_Fix_OH_Cost" ColumnName="Whse_Curr_Fix_OH_Cost" />
+                <ScalarProperty Name="Whse_Curr_Var_OH_Cost" ColumnName="Whse_Curr_Var_OH_Cost" />
+                <ScalarProperty Name="Whse_Curr_Outside_Cost" ColumnName="Whse_Curr_Outside_Cost" />
+                <ScalarProperty Name="Whse_Avg_Matl_Cost" ColumnName="Whse_Avg_Matl_Cost" />
+                <ScalarProperty Name="Whse_Avg_Lbr_Cost" ColumnName="Whse_Avg_Lbr_Cost" />
+                <ScalarProperty Name="Whse_Avg_Fix_OH_Cost" ColumnName="Whse_Avg_Fix_OH_Cost" />
+                <ScalarProperty Name="Whse_Avg_Var_OH_Cost" ColumnName="Whse_Avg_Var_OH_Cost" />
+                <ScalarProperty Name="Whse_Avg_Outside_Cost" ColumnName="Whse_Avg_Outside_Cost" />
+                <ScalarProperty Name="Whse_Inv_Value" ColumnName="Whse_Inv_Value" />
+                <ScalarProperty Name="Loc_Inv_Value" ColumnName="Loc_Inv_Value" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ObsoleteDate" ColumnName="ObsoleteDate" />
+                <ScalarProperty Name="InWorkflow" ColumnName="InWorkflow" />
+                <ScalarProperty Name="NoteExistsFlag" ColumnName="NoteExistsFlag" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="RowPointer" ColumnName="RowPointer" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Sched_Type" ColumnName="Sched_Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

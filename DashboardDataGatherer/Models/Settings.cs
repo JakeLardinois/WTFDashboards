@@ -20,23 +20,20 @@ namespace DashboardDataGatherer.Models
         public OleDbConnection OleDBConnection { get; set; }
     }
 
-    public static class QueryDefinitions
+    public class QueryDefinitions
     {
         static System.Resources.ResourceManager objResourceManager = new System.Resources.ResourceManager("DashboardDataGatherer.Models.QueryDefs", System.Reflection.Assembly.GetExecutingAssembly());
-        static StringBuilder strSQL;
+        private StringBuilder strSQL = new StringBuilder();
 
 
-        public static string GetQuery(string strQueryName)
+        public string GetQuery(string strQueryName)
         {
-            strSQL = new StringBuilder();
-            strSQL.Append(objResourceManager.GetString(strQueryName));
-
-            return strSQL.ToString();
+            return objResourceManager.GetString(strQueryName);
         }
 
-        public static string GetQuery(string strQueryName, string[] strParams)
+        public string GetQuery(string strQueryName, string[] strParams)
         {
-            strSQL = new StringBuilder();
+            strSQL.Clear();
             strSQL.Append(objResourceManager.GetString(strQueryName));
 
             for (int intCounter = strParams.Length - 1; intCounter > -1; intCounter--)

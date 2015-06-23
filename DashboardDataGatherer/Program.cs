@@ -13,37 +13,17 @@ namespace DashboardDataGatherer
     {
         static void Main(string[] args)
         {
-            DashboardDbEntities db = new DashboardDbEntities();
-            List<DurationCategory> DurationCategories;
+            //Uploads the MP2 Work Order Data
+            //var objWODataUploader = new WODataUploader();
+            //objWODataUploader.UploadWorkOrderData();
 
+            //Utilizes Sytelines Stored Procedure to retrieve inventory Costs on an Item Level
+            //var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
+            //var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineCostReport);
+            var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.FactTrak, new DateTime(2015, 6, 15), new DateTime(2015, 6, 15));
+            
+            var InventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
 
-            var objAnnualMP2ByCategory = new WorkOrderData(out DurationCategories, DateTime.Now.AddYears(-1).Date, DateTime.Now.Date);
-            foreach (var objDurationCategory in DurationCategories)
-                db.WorkOrderMetrics.Add(new WorkOrderMetric
-                {
-                    DateCreated = DateTime.Now.Date,
-                    MetricType = (char)WOMetricType.AnnualWOAvgDaysOpenByCategory + string.Empty,
-                    WOCategory = objDurationCategory.Category,
-                    AverageWODuration = objDurationCategory.AverageWODuration,
-                    WOCount = objDurationCategory.WOCount
-                });
-            db.Database.ExecuteSqlCommand(QueryDefinitions.GetQuery("DeleteWOMetricByTypeAndDate", //Delete any work orders that may exist for this day to avoid duplicates...
-                new string[] { (char)WOMetricType.AnnualWOAvgDaysOpenByCategory + string.Empty, DateTime.Now.Date.ToShortDateString()}));
-            db.SaveChanges(); //Save the WOMetrics to the database...
-
-            var objOpenReadyHoldMP2ByCategory = new WorkOrderData(out DurationCategories, new List<Status> { Status.Open, Status.Ready, Status.Hold });
-            foreach (var objDurationCategory in DurationCategories)
-                db.WorkOrderMetrics.Add(new WorkOrderMetric
-                {
-                    DateCreated = DateTime.Now.Date,
-                    MetricType = (char)WOMetricType.CurrentWOAvgDaysOpenByCategory + string.Empty,
-                    WOCategory = objDurationCategory.Category,
-                    AverageWODuration = objDurationCategory.AverageWODuration,
-                    WOCount = objDurationCategory.WOCount
-                });
-            db.Database.ExecuteSqlCommand(QueryDefinitions.GetQuery("DeleteWOMetricByTypeAndDate",
-                new string[] { (char)WOMetricType.CurrentWOAvgDaysOpenByCategory + string.Empty, DateTime.Now.Date.ToShortDateString() }));
-            db.SaveChanges();
 
             Console.WriteLine("Successfully Completed!");
             Console.ReadLine();

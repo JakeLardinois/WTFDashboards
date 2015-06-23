@@ -5,7 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2336409700db4ddfa7e9e5ef74c7c792" Name="Diagram1">
-        <EntityTypeShape EntityType="DashboardData.WorkOrderMetric" Width="1.5" PointX="7.9685736652317329" PointY="28.837600706535206" />
+        <EntityTypeShape EntityType="DashboardData.WorkOrderMetric" Width="1.5" PointX="0.625" PointY="0.5" />
+        <EntityTypeShape EntityType="DashboardData.InventoryCostMetric" Width="1.5" PointX="2.375" PointY="0.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
