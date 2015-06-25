@@ -222,6 +222,14 @@ namespace DashboardDataGatherer.Models
         {
             this.AddRange(mSyteLineDb.Database
                 .SqlQuery<InventoryCostItem>(mQueyrDefs.GetQuery("SelectItemWhseItemCosts")) //SelectItemWhseTypeCosts would give the costs grouped by the SQL Server
+                .Select(c => new InventoryCostItem {
+                    Warehouse = c.Warehouse, 
+                    Item = c.Item, 
+                    Source = c.Source, 
+                    QtyOnHand = c.QtyOnHand, 
+                    UnitCost = c.UnitCost, 
+                    TotalCost = c.TotalCost, 
+                    DateCreated = DateTime.Now.Date})
                 .ToList());
         }
 

@@ -18,9 +18,9 @@ namespace DashboardDataGatherer
             //objWODataUploader.UploadWorkOrderData();
 
             //Utilizes Sytelines Stored Procedure to retrieve inventory Costs on an Item Level
-            //var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
+            var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
             //var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineCostReport);
-            var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.FactTrak, new DateTime(2015, 6, 15), new DateTime(2015, 6, 15));
+            //var objInventoryCostItems = new InventoryCostItems(InventoryCostSource.FactTrak, new DateTime(2015, 1, 1), new DateTime(2015, 1, 1));
             
             var InventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
 

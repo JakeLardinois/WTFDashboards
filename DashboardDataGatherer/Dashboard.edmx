@@ -16,7 +16,7 @@
           <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="InventoryType" Type="nvarchar" MaxLength="50" />
           <Property Name="Warehouse" Type="nvarchar" MaxLength="50" />
-          <Property Name="Cost" Type="decimal" />
+          <Property Name="Cost" Type="money" />
           <Property Name="DateCreated" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkOrderMetrics">
@@ -56,7 +56,7 @@
           <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="InventoryType" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Warehouse" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="Cost" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Cost" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="0" />
         </EntityType>
       </Schema>

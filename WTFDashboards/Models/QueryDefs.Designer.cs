@@ -62,6 +62,21 @@ namespace WTFDashboards.Models {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT ID
+        ///      ,InventoryType
+        ///      ,Warehouse
+        ///      ,Cost
+        ///      ,DateCreated
+        ///FROM InventoryCostMetrics
+        ///WHERE DateCreated IN (SELECT TOP ~p0 DateCreated FROM InventoryCostMetrics GROUP BY DateCreated ORDER BY DateCreated DESC).
+        /// </summary>
+        internal static string SelectTopNInventoryCosts {
+            get {
+                return ResourceManager.GetString("SelectTopNInventoryCosts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT ID
         ///      ,WOCategory
         ///      ,WOCount
         ///      ,AverageWODuration

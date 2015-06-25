@@ -152,6 +152,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="InventoryCostMetric.cs">
+      <DependentUpon>Dashboard.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InventoryChart.cs" />
+    <Compile Include="Models\InventoryData.cs" />
     <Compile Include="Models\WODurationCategory.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ExtensionMethods.cs" />

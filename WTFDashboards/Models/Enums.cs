@@ -17,4 +17,19 @@ namespace WTFDashboards.Models
         Comparison = 1,
         Performance = 2
     }
+
+    public enum InventoryCostGroup
+    {
+        None,
+        Warehouse,
+        InventoryType
+    }
+
+    public enum InventoryChartType
+    {
+        Single,
+        CompareByWarehouse,
+        CompareByInventoryType,
+        Performance
+    }
 }

@@ -52,10 +52,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 10:07:52</publishTime>
     </File>
     <File Include="bin/WTFDashboards.dll">
-      <publishTime>06/16/2015 14:46:54</publishTime>
+      <publishTime>06/23/2015 21:08:31</publishTime>
     </File>
     <File Include="bin/WTFDashboards.pdb">
-      <publishTime>06/16/2015 14:46:54</publishTime>
+      <publishTime>06/23/2015 21:08:31</publishTime>
     </File>
     <File Include="Content/html5-reset.css">
       <publishTime>04/20/2015 06:26:05</publishTime>
@@ -157,7 +157,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 14:55:30</publishTime>
     </File>
     <File Include="Dashboard.edmx.diagram">
-      <publishTime>06/16/2015 10:43:43</publishTime>
+      <publishTime>06/23/2015 13:19:17</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>06/16/2015 09:55:36</publishTime>
@@ -175,19 +175,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 14:50:50</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/16/2015 12:28:43</publishTime>
+      <publishTime>06/16/2015 16:58:07</publishTime>
     </File>
     <File Include="Views/Index.cshtml">
       <publishTime>06/16/2015 11:28:17</publishTime>
     </File>
+    <File Include="Views/Inventory/Index.cshtml">
+      <publishTime>06/23/2015 21:07:58</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/16/2015 14:54:30</publishTime>
+      <publishTime>06/16/2015 16:56:45</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/16/2015 10:31:30</publishTime>
     </File>
     <File Include="Views/WorkOrders/Index.cshtml">
-      <publishTime>06/16/2015 11:52:33</publishTime>
+      <publishTime>06/16/2015 16:58:07</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>06/16/2015 10:28:40</publishTime>

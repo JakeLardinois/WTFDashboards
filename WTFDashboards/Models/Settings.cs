@@ -4,9 +4,21 @@ using System.Linq;
 using System.Web;
 
 using System.Text;
+using System.Drawing;
+using System.Reflection;
 
 namespace WTFDashboards.Models
 {
+    public static class Settings
+    {
+        public static List<Color> ColorStructToList()
+        {
+            return typeof(Color).GetProperties(BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.Public)
+                                .Select(c => (Color)c.GetValue(null, null))
+                                .ToList();
+        }
+    }
+
     public class QueryDefinitions
     {
         static System.Resources.ResourceManager objResourceManager = new System.Resources.ResourceManager("WTFDashboards.Models.QueryDefs", System.Reflection.Assembly.GetExecutingAssembly());

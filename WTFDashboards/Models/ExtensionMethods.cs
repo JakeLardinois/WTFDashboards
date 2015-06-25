@@ -10,6 +10,7 @@ namespace WTFDashboards.Models
 {
     public static class ExtensionMethods
     {
+
         public static DataTable ToDataTable(this List<WorkOrderMetric> source)
         {
             DataTable objDataTable = new DataTable();
