@@ -27,50 +27,44 @@ namespace DashboardDataGatherer
                             DisplayUsage();
                             Environment.Exit(0);
                             break;
-                        case 'g':
-                        case 'G':
-                            WODataUploader objWODataUploader;
-                            InventoryDataUploader InventoryDataUploader;
+                        case 'i':
+                        case 'I':
                             InventoryCostItems objInventoryCostItems;
+                            InventoryDataUploader InventoryDataUploader;
 
+                            //Utilizes Sytelines Stored Procedure to retrieve inventory Costs on an Item Level
+                            //objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineCostReport);
 
-                            if (objArgs[x].Length < 2) //Gathers all metrics since no parameter is passed with the /G switch...
-                            {
-                                //Uploads the MP2 Work Order Data
-                                objWODataUploader = new WODataUploader();
-                                objWODataUploader.UploadWorkOrderData();
+                            //Utilizes the Fact-Trak database to retrieve inventory Costs on an Item level for a specific Day or range of Days 
+                            //objInventoryCostItems = new InventoryCostItems(InventoryCostSource.FactTrak, new DateTime(2015, 1, 1), new DateTime(2015, 1, 1));
 
-                                //Gathers and Uploads Inventory Cost Data
-                                objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
-                                InventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
-                                break;
-                            }
+                            //Gets the current inventory costs based on Syteline's ItemWhse table
+                            objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
+                            InventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
+                            break;
+                        case 'w':
+                        case 'W'://Gathers & Uploads the MP2 Work Order Data
+                            WODataUploader objWODataUploader;
 
-                            switch (objArgs[x].Substring(1).ToUpper().Trim()) //A parameter is passed with the /G switch
-                            {
-                                case "WORKORDERS":
-                                    //Uploads the MP2 Work Order Data
-                                    objWODataUploader = new WODataUploader();
-                                    objWODataUploader.UploadWorkOrderData();
-                                    break;
-                                case "INVENTORY":
-                                    //Utilizes Sytelines Stored Procedure to retrieve inventory Costs on an Item Level
-                                    //objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineCostReport);
+                            
+                            objWODataUploader = new WODataUploader();
+                            objWODataUploader.UploadWorkOrderData();
+                            break;
+                        case 'm':
+                        case 'M': //Gathers & Uploads Machine hours and absorbed Overhead...
 
-                                    //Utilizes the Fact-Trak database to retrieve inventory Costs on an Item level for a specific Day or range of Days 
-                                    //objInventoryCostItems = new InventoryCostItems(InventoryCostSource.FactTrak, new DateTime(2015, 1, 1), new DateTime(2015, 1, 1));
+                            Console.WriteLine("Successfully Completed!");
+                            Console.ReadLine();
+                            break;
+                        default: //Gathers & Uploads all metrics since no parameter is passed...
+                            
+                            //Uploads the MP2 Work Order Data
+                            objWODataUploader = new WODataUploader();
+                            objWODataUploader.UploadWorkOrderData();
 
-                                    //Gets the current inventory costs based on Syteline's ItemWhse table
-                                    objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
-                                    InventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
-                                    break;
-                                case "MACHINEHOURS":
-
-
-                                    Console.WriteLine("Successfully Completed!");
-                                    Console.ReadLine();
-                                    break;
-                            }
+                            //Gathers and Uploads Inventory Cost Data
+                            objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
+                            InventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
                             break;
                     }
                 }
