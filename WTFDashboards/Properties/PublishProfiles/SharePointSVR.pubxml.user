@@ -52,10 +52,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 10:07:52</publishTime>
     </File>
     <File Include="bin/WTFDashboards.dll">
-      <publishTime>06/23/2015 21:08:31</publishTime>
+      <publishTime>07/08/2015 06:30:14</publishTime>
     </File>
     <File Include="bin/WTFDashboards.pdb">
-      <publishTime>06/23/2015 21:08:31</publishTime>
+      <publishTime>07/08/2015 06:30:14</publishTime>
     </File>
     <File Include="Content/html5-reset.css">
       <publishTime>04/20/2015 06:26:05</publishTime>
@@ -181,7 +181,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 11:28:17</publishTime>
     </File>
     <File Include="Views/Inventory/Index.cshtml">
-      <publishTime>06/23/2015 21:07:58</publishTime>
+      <publishTime>06/25/2015 16:47:45</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
       <publishTime>06/16/2015 16:56:45</publishTime>

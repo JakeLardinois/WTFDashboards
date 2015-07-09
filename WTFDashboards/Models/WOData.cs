@@ -82,5 +82,39 @@ namespace WTFDashboards.Models
                         .ToList());
             }
         }
+
+        public void AlignSeriesDataSetsByDate()
+        {
+            List<DateTime> Dates;
+            List<WorkOrderMetric> tempCollectionData;
+            var tempSeriesCollection = new List<List<WorkOrderMetric>>();
+
+            Dates = new List<DateTime>();
+            foreach (var objCollection in SeriesDataSets)
+            {
+                Dates = Dates.Union(objCollection
+                .GroupBy(w => w.DateCreated.Date)
+                .Select(w => w.Key)
+                .ToList())
+                .ToList();
+            }
+
+            foreach (var objCollection in SeriesDataSets)
+            {
+                tempCollectionData = new List<WorkOrderMetric>();
+                foreach (var Date in Dates)
+                {
+                    tempCollectionData
+                        .Add(objCollection.
+                        Where(w => w.DateCreated.Date == Date.Date)
+                        .DefaultIfEmpty(new WorkOrderMetric { DateCreated = Date, WOCategory = objCollection[0].WOCategory, MetricType = objCollection[0].MetricType,
+                            WOCount = 0, AverageWODuration = 0})
+                        .SingleOrDefault());
+                }
+                tempSeriesCollection.Add(tempCollectionData);
+            }
+
+            SeriesDataSets = tempSeriesCollection;
+        }
     }
 }

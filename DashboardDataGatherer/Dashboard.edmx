@@ -7,6 +7,7 @@
     <Schema Namespace="DashboardData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="DashboardDataStoreContainer">
           <EntitySet Name="InventoryCostMetrics" EntityType="DashboardData.Store.InventoryCostMetrics" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MachineHourMetrics" EntityType="DashboardData.Store.MachineHourMetrics" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WorkOrderMetrics" EntityType="DashboardData.Store.WorkOrderMetrics" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="InventoryCostMetrics">
@@ -18,6 +19,17 @@
           <Property Name="Warehouse" Type="nvarchar" MaxLength="50" />
           <Property Name="Cost" Type="money" />
           <Property Name="DateCreated" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MachineHourMetrics">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionDate" Type="date" Nullable="false" />
+          <Property Name="WorkCenter" Type="nvarchar" MaxLength="6" />
+          <Property Name="MachineHours" Type="decimal" Precision="19" Scale="8" />
+          <Property Name="FixedOverhead" Type="decimal" Precision="20" Scale="8" />
+          <Property Name="VariableOverhead" Type="decimal" Precision="20" Scale="8" />
         </EntityType>
         <EntityType Name="WorkOrderMetrics">
           <Key>
@@ -37,6 +49,7 @@
         <EntityContainer Name="DashboardDbEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="WorkOrderMetrics" EntityType="DashboardData.WorkOrderMetric" />
           <EntitySet Name="InventoryCostMetrics" EntityType="DashboardData.InventoryCostMetric" />
+          <EntitySet Name="MachineHourMetrics" EntityType="DashboardData.MachineHourMetric" />
         </EntityContainer>
         <EntityType Name="WorkOrderMetric">
           <Key>
@@ -58,6 +71,17 @@
           <Property Type="String" Name="Warehouse" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Decimal" Name="Cost" Precision="19" Scale="4" />
           <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="MachineHourMetric">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="TransactionDate" Nullable="false" Precision="0" />
+          <Property Type="String" Name="WorkCenter" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MachineHours" Precision="19" Scale="8" />
+          <Property Type="Decimal" Name="FixedOverhead" Precision="20" Scale="8" />
+          <Property Type="Decimal" Name="VariableOverhead" Precision="20" Scale="8" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -84,6 +108,18 @@
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
                 <ScalarProperty Name="InventoryType" ColumnName="InventoryType" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineHourMetrics">
+            <EntityTypeMapping TypeName="DashboardData.MachineHourMetric">
+              <MappingFragment StoreEntitySet="MachineHourMetrics">
+                <ScalarProperty Name="VariableOverhead" ColumnName="VariableOverhead" />
+                <ScalarProperty Name="FixedOverhead" ColumnName="FixedOverhead" />
+                <ScalarProperty Name="MachineHours" ColumnName="MachineHours" />
+                <ScalarProperty Name="WorkCenter" ColumnName="WorkCenter" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

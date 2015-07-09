@@ -62,6 +62,16 @@ namespace DashboardDataGatherer.Models {
         
         /// <summary>
         ///   Looks up a localized string similar to DELETE
+        ///FROM MachineHourMetrics.
+        /// </summary>
+        internal static string DeleteAllMachineHourMetrics {
+            get {
+                return ResourceManager.GetString("DeleteAllMachineHourMetrics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE
         ///FROM WorkOrderMetrics
         ///WHERE MetricType = &apos;~p0&apos; AND DateCreated = &apos;~p1&apos;.
         /// </summary>
@@ -173,6 +183,19 @@ namespace DashboardDataGatherer.Models {
         internal static string SelectItemWIPRemaining {
             get {
                 return ResourceManager.GetString("SelectItemWIPRemaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT CAST(trans_date AS date) AS TransactionDate, wc AS WorkCenter, SUM(a_hrs) AS MachineHours, SUM(fixovhd) AS FixedOverhead, SUM(varovhd) AS VariableOverhead
+        ///FROM jobtran
+        ///WHERE CAST(trans_date AS date) IN (SELECT TOP 365 CAST(trans_date AS date) FROM jobtran WHERE trans_type = &apos;C&apos; AND CAST(trans_date AS date) &lt;= &apos;~p0&apos; GROUP BY CAST(trans_date AS date) ORDER BY CAST(trans_date AS date) DESC) AND trans_type = &apos;C&apos;
+        ///GROUP BY CAST(trans_date AS date), wc
+        ///ORDER BY TransactionDate ASC.
+        /// </summary>
+        internal static string SelectNMachineTransactions {
+            get {
+                return ResourceManager.GetString("SelectNMachineTransactions", resourceCulture);
             }
         }
         

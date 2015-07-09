@@ -29,31 +29,29 @@ namespace WTFDashboards.Models
             chart.BackSecondaryColor = Color.White;
             chart.BackGradientStyle = GradientStyle.TopBottom;
             chart.BorderlineWidth = 1;
-            chart.Palette = ChartColorPalette.BrightPastel;
             chart.BorderlineColor = Color.FromArgb(26, 59, 105);
             chart.RenderType = RenderType.BinaryStreaming;
             chart.BorderSkin.SkinStyle = BorderSkinStyle.Emboss;
             chart.AntiAliasing = AntiAliasingStyles.All;
             chart.TextAntiAliasingQuality = TextAntiAliasingQuality.Normal;
 
+            chart.Titles.Add(CreateTitle(Title));
+            chart.Palette = ChartColorPalette.BrightPastel;
+            chart.PaletteCustomColors = Settings.GetChartColorPaletteColors(chart.Palette);
 
             switch (WOChart)
             {
                 case WOChartType.Single:
-                    chart.Titles.Add(CreateTitle(Title));
-                    //chart.Legends.Add(CreateLegend());
-                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, Color.FromArgb(198, 99, 99), WOData.CollectionDataName));
+                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, chart.PaletteCustomColors[0], WOData.CollectionDataName));
                     chart.ChartAreas.Add(CreateChartArea());
                     break;
                 case WOChartType.Comparison:
-                    chart.Titles.Add(CreateTitle(Title));
                     chart.Legends.Add(CreateLegend());
-                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, Color.FromArgb(198, 99, 99), WOData.CollectionDataName));
-                    chart.Series.Add(CreateSeries(WOData.CollectionComparisonData, SeriesChartType.Column, Color.FromArgb(153, 0, 76), WOData.ComparisonDataName));
+                    chart.Series.Add(CreateSeries(WOData.CollectionData, SeriesChartType.Column, chart.PaletteCustomColors[0], WOData.CollectionDataName));
+                    chart.Series.Add(CreateSeries(WOData.CollectionComparisonData, SeriesChartType.Column, chart.PaletteCustomColors[1], WOData.ComparisonDataName));
                     chart.ChartAreas.Add(CreateChartArea());
                     break;
                 case WOChartType.Performance:
-                    chart.Titles.Add(CreateTitle(Title));
                     chart.Legends.Add(CreateLegend());
                     for (int intCounter = 0; intCounter < WOData.SeriesDataSets.Count; intCounter++)
                         chart.Series.Add(CreatePerformanceSeries(WOData.SeriesDataSets[intCounter], SeriesChartType.Line, WOData.SeriesDataSets[intCounter][0].WOCategoryNonNullable));

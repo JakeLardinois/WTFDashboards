@@ -215,4 +215,15 @@ GROUP BY whse, item</value>
   <data name="StoredProcedurePermissions" xml:space="preserve">
     <value>GRANT EXECUTE ON [WTF_App].[dbo].Rpt_InventoryCostSp TO WTFApp</value>
   </data>
+  <data name="DeleteAllMachineHourMetrics" xml:space="preserve">
+    <value>DELETE
+FROM MachineHourMetrics</value>
+  </data>
+  <data name="SelectNMachineTransactions" xml:space="preserve">
+    <value>SELECT CAST(trans_date AS date) AS TransactionDate, wc AS WorkCenter, SUM(a_hrs) AS MachineHours, SUM(fixovhd) AS FixedOverhead, SUM(varovhd) AS VariableOverhead
+FROM jobtran
+WHERE CAST(trans_date AS date) IN (SELECT TOP 365 CAST(trans_date AS date) FROM jobtran WHERE trans_type = 'C' AND CAST(trans_date AS date) &lt;= '~p0' GROUP BY CAST(trans_date AS date) ORDER BY CAST(trans_date AS date) DESC) AND trans_type = 'C'
+GROUP BY CAST(trans_date AS date), wc
+ORDER BY TransactionDate ASC</value>
+  </data>
 </root>

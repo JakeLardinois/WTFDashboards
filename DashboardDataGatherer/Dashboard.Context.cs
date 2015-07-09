@@ -27,5 +27,6 @@ namespace DashboardDataGatherer
     
         public DbSet<WorkOrderMetric> WorkOrderMetrics { get; set; }
         public DbSet<InventoryCostMetric> InventoryCostMetrics { get; set; }
+        public DbSet<MachineHourMetric> MachineHourMetrics { get; set; }
     }
 }

@@ -20,12 +20,6 @@ namespace WTFDashboards.Models
         public InventoryCostGroup InventoryCostGroup { get { return mobjInventoryCostGroup; } }
 
 
-        public InventoryData()
-        {
-            CollectionData = new List<InventoryCostMetric>();
-            SeriesDataSets = new List<List<InventoryCostMetric>>();
-        }
-
         public InventoryData(InventoryCostGroup objInventoryCostGroup, int RecordSetCount)
         {
             SeriesDataSets = new List<List<InventoryCostMetric>>();
@@ -58,10 +52,17 @@ namespace WTFDashboards.Models
                     GroupCollectionDataByWarehouse(CostMetrics);
                     PopulateSeriesDataSetsByWarehouse();
                     break;
+                case InventoryCostGroup.Purchased:
+                    GetCollectionDataByInventoryType(CostMetrics, "Purchased");
+                    break;
+                case InventoryCostGroup.Manufactured:
+                    GetCollectionDataByInventoryType(CostMetrics, "Manufactured");
+                    break;
+                case InventoryCostGroup.WIP:
+                    GetCollectionDataByInventoryType(CostMetrics, "WIP");
+                    break;
                 case InventoryCostGroup.None:
                     GetCollectionData(CostMetrics);
-                    //PopulateSeriesDataSetsByWarehouse();
-                    //PopulateSeriesDataSetsByInventoryType();
                     break;
             }
 
@@ -70,6 +71,16 @@ namespace WTFDashboards.Models
         private void GetCollectionData(IEnumerable<InventoryCostMetric> objCostMetrics)
         {
             CollectionData = objCostMetrics
+                .ToList();
+        }
+
+        private void GetCollectionDataByInventoryType(IEnumerable<InventoryCostMetric> objCostMetrics, string InventoryType)
+        {
+            CollectionData = objCostMetrics
+                .Where(t => t.InventoryType.ToUpper().Equals(InventoryType.ToUpper()))
+                .GroupBy(t => new { t.DateCreated })
+                .Select(t => new InventoryCostMetric { DateCreated = t.Key.DateCreated, Cost = t.Sum(c => c.Cost)})
+                .OrderBy(c => c.DateCreated)
                 .ToList();
         }
 
@@ -104,7 +115,7 @@ namespace WTFDashboards.Models
                     tempCollectionData
                         .Add(objCollection.
                         Where(w => w.InventoryType == InventoryType)
-                        .DefaultIfEmpty(new InventoryCostMetric { InventoryType = InventoryType, Cost = 0 })
+                        .DefaultIfEmpty(new InventoryCostMetric { InventoryType = InventoryType, Warehouse = objCollection[0].Warehouse, Cost = 0 })
                         .SingleOrDefault());
                 }
                 tempSeriesCollection.Add(tempCollectionData);
@@ -112,6 +123,7 @@ namespace WTFDashboards.Models
 
             SeriesDataSets = tempSeriesCollection;
         }
+
 
         private void GroupCollectionDataByInventoryType(IEnumerable<InventoryCostMetric> objCostMetrics)
         {
@@ -146,7 +158,41 @@ namespace WTFDashboards.Models
                     tempCollectionData
                         .Add(objCollection.
                         Where(w => w.Warehouse == Warehouse)
-                        .DefaultIfEmpty(new InventoryCostMetric { Warehouse = Warehouse, Cost = 0 })
+                        .DefaultIfEmpty(new InventoryCostMetric { Warehouse = Warehouse, InventoryType = objCollection[0].InventoryType, Cost = 0 })
+                        .SingleOrDefault());
+                }
+                tempSeriesCollection.Add(tempCollectionData);
+            }
+
+            SeriesDataSets = tempSeriesCollection;
+        }
+
+
+        public void AlignSeriesDataSetsByDate()
+        {
+            List<DateTime> Dates;
+            List<InventoryCostMetric> tempCollectionData;
+            var tempSeriesCollection = new List<List<InventoryCostMetric>>();
+
+            Dates = new List<DateTime>();
+            foreach (var objCollection in SeriesDataSets)
+            {
+                Dates = Dates.Union(objCollection
+                .GroupBy(w => w.DateCreated.Date)
+                .Select(w => w.Key)
+                .ToList())
+                .ToList();
+            }
+
+            foreach (var objCollection in SeriesDataSets)
+            {
+                tempCollectionData = new List<InventoryCostMetric>();
+                foreach (var Date in Dates)
+                {
+                    tempCollectionData
+                        .Add(objCollection.
+                        Where(w => w.DateCreated.Date == Date.Date)
+                        .DefaultIfEmpty(new InventoryCostMetric { DateCreated = Date, InventoryType = objCollection[0].InventoryType, Cost = 0 })
                         .SingleOrDefault());
                 }
                 tempSeriesCollection.Add(tempCollectionData);

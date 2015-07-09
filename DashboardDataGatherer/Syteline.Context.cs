@@ -27,5 +27,6 @@ namespace DashboardDataGatherer
     
         public DbSet<itemprice> itemprices { get; set; }
         public DbSet<job> jobs { get; set; }
+        public DbSet<jobtran> jobtrans { get; set; }
     }
 }

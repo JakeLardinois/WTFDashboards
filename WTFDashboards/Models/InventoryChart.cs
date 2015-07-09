@@ -12,7 +12,6 @@ namespace WTFDashboards.Models
 {
     public class InventoryChart
     {
-        public static List<Color> Colors = Settings.ColorStructToList();
         public Chart chart { get; set; }
         public MemoryStream chartStream { get; set; }
 
@@ -27,7 +26,6 @@ namespace WTFDashboards.Models
             chart.BackSecondaryColor = Color.White;
             chart.BackGradientStyle = GradientStyle.TopBottom;
             chart.BorderlineWidth = 1;
-            chart.Palette = ChartColorPalette.BrightPastel;
             chart.BorderlineColor = Color.FromArgb(26, 59, 105);
             chart.RenderType = RenderType.BinaryStreaming;
             chart.BorderSkin.SkinStyle = BorderSkinStyle.Emboss;
@@ -35,27 +33,38 @@ namespace WTFDashboards.Models
             chart.TextAntiAliasingQuality = TextAntiAliasingQuality.Normal;
 
             chart.Titles.Add(CreateTitle(Title));
-            chart.Legends.Add(CreateLegend());
+            chart.Palette = ChartColorPalette.BrightPastel;
+            chart.PaletteCustomColors = Settings.GetChartColorPaletteColors(chart.Palette);
+            //chart.ApplyPaletteColors();
             switch (InventoryData.InventoryCostGroup)
             {
                 case InventoryCostGroup.InventoryType:
+                    chart.Legends.Add(CreateLegend());
                     for (int intCounter = 0; intCounter < InventoryData.SeriesDataSets.Count; intCounter++)
                         chart.Series.Add(CreatePerformanceSeries(InventoryData.SeriesDataSets[intCounter], SeriesChartType.Line, InventoryData.SeriesDataSets[intCounter][0].InventoryType));
                     break;
                 case InventoryCostGroup.Warehouse:
+                    chart.Legends.Add(CreateLegend());
                     for (int intCounter = 0; intCounter < InventoryData.SeriesDataSets.Count; intCounter++)
                         chart.Series.Add(CreatePerformanceSeries(InventoryData.SeriesDataSets[intCounter], SeriesChartType.Line, InventoryData.SeriesDataSets[intCounter][0].Warehouse));
                     break;
+                case InventoryCostGroup.Purchased:
+                case InventoryCostGroup.Manufactured:
+                case InventoryCostGroup.WIP:
+                    chart.Series.Add(CreatePerformanceSeries(InventoryData.CollectionData, SeriesChartType.Line, InventoryData.CollectionDataName));
+                    break;
                 case InventoryCostGroup.None:
-                    if (InventoryChartType == InventoryChartType.CompareByWarehouse)
+                    chart.Legends.Add(CreateLegend());
+                    switch (InventoryChartType)
                     {
-                        for (int intCounter = 0; intCounter < InventoryData.SeriesDataSets.Count; intCounter++)
-                            chart.Series.Add(CreateSeries(InventoryData.SeriesDataSets[intCounter], SeriesChartType.Column, "InventoryType", Colors[(intCounter + 1) * 3], InventoryData.SeriesDataSets[intCounter][0].Warehouse));
-                    }
-                    else if (InventoryChartType == InventoryChartType.CompareByInventoryType)
-                    {
-                        for (int intCounter = 0; intCounter < InventoryData.SeriesDataSets.Count; intCounter++)
-                            chart.Series.Add(CreateSeries(InventoryData.SeriesDataSets[intCounter], SeriesChartType.Column, "Warehouse", Colors[(intCounter + 1) * 3], InventoryData.SeriesDataSets[intCounter][0].InventoryType));
+                        case InventoryChartType.CompareByWarehouse:
+                            for (int intCounter = 0; intCounter < InventoryData.SeriesDataSets.Count; intCounter++)
+                                chart.Series.Add(CreateSeries(InventoryData.SeriesDataSets[intCounter], SeriesChartType.Column, "InventoryType", chart.PaletteCustomColors[intCounter], InventoryData.SeriesDataSets[intCounter][0].Warehouse));
+                            break;
+                        case InventoryChartType.CompareByInventoryType:
+                            for (int intCounter = 0; intCounter < InventoryData.SeriesDataSets.Count; intCounter++)
+                                chart.Series.Add(CreateSeries(InventoryData.SeriesDataSets[intCounter], SeriesChartType.Column, "Warehouse", chart.PaletteCustomColors[intCounter], InventoryData.SeriesDataSets[intCounter][0].InventoryType));
+                            break;
                     }
                     break;
             }
@@ -99,6 +108,7 @@ namespace WTFDashboards.Models
             seriesDetail.ChartType = chartType;
             seriesDetail.BorderWidth = 2;
             DataPoint point;
+
 
             foreach (var result in results)
             {
@@ -151,7 +161,7 @@ namespace WTFDashboards.Models
             chartArea.AxisY.MajorGrid.LineColor = Color.FromArgb(64, 64, 64, 64);
             chartArea.AxisX.Interval = 1; //makes the XAxis labels display...
             chartArea.AxisX.Title = "";
-            chartArea.AxisY.Title = "Days";
+            chartArea.AxisY.Title = "Dollars";
 
             return chartArea;
         }

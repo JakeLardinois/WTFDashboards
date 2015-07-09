@@ -71,6 +71,7 @@ namespace WTFDashboards.Controllers
         public FileResult CurrentWOAvgPerformance()
         {
             var CurrentWOData = new WOData(WOMetricType.CurrentWOAvgDaysOpenByCategory, 10, true);
+            CurrentWOData.AlignSeriesDataSetsByDate();
             var WOChart = new WOChart(WOChartType.Performance, CurrentWOData, "Current WO Avg Days Open Performance");
 
             return (File(WOChart.chartStream.GetBuffer(), @"image/png"));
@@ -79,6 +80,7 @@ namespace WTFDashboards.Controllers
         public FileResult AnnualWOAvgPerformance()
         {
             var AnnualWOData = new WOData(WOMetricType.AnnualWOAvgDaysOpenByCategory, 10, true);
+            AnnualWOData.AlignSeriesDataSetsByDate();
             var WOChart = new WOChart(WOChartType.Performance, AnnualWOData, "Annual WO Avg Days Open Performance");
 
             return (File(WOChart.chartStream.GetBuffer(), @"image/png"));

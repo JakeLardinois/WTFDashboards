@@ -108,13 +108,20 @@
     <Compile Include="job.cs">
       <DependentUpon>Syteline.tt</DependentUpon>
     </Compile>
+    <Compile Include="jobtran.cs">
+      <DependentUpon>Syteline.tt</DependentUpon>
+    </Compile>
     <Compile Include="lc_ea_item_whse_loc_facts.cs">
       <DependentUpon>FactTrak.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MachineHourMetric.cs">
+      <DependentUpon>Dashboard.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InventoryCostData.cs" />
     <Compile Include="Models\InventoryDataUploader.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemWhse.cs" />
+    <Compile Include="Models\JobMachineData.cs" />
     <Compile Include="Models\MatlTran.cs" />
     <Compile Include="Models\WODurationCategory.cs" />
     <Compile Include="Models\WODataUploader.cs" />

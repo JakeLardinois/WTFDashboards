@@ -22,7 +22,10 @@ namespace WTFDashboards.Models
     {
         None,
         Warehouse,
-        InventoryType
+        InventoryType,
+        Purchased,
+        Manufactured,
+        WIP
     }
 
     public enum InventoryChartType
