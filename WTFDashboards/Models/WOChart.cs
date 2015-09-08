@@ -94,7 +94,8 @@ namespace WTFDashboards.Models
         {
             Series seriesDetail = new Series();
             seriesDetail.Name = SeriesName;
-            seriesDetail.IsValueShownAsLabel = false;
+            seriesDetail.IsValueShownAsLabel = true;
+            //seriesDetail.Label = results;
             seriesDetail.Color = SeriesColor;
             seriesDetail.ChartType = chartType;
             seriesDetail.BorderWidth = 2;
@@ -105,6 +106,7 @@ namespace WTFDashboards.Models
                 point = new DataPoint();
                 point.AxisLabel = result.WOCategoryNonNullable;
                 point.YValues = new double[] { double.Parse(string.Empty + result.AverageWODuration) };
+                point.Label = result.WOCount.ToString();
                 seriesDetail.Points.Add(point);
             }
             seriesDetail.ChartArea = "Results";

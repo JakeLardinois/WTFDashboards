@@ -24,7 +24,7 @@ namespace WTFDashboards.Controllers
             var InventoryCostData = new InventoryData(InventoryCostGroup.InventoryType, 10);
             InventoryCostData.AlignSeriesDataSetsByDate();
             InventoryCostData.CollectionDataName = "Current";
-            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Inventory Cost By Source");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Inventory By Source");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }
@@ -33,7 +33,7 @@ namespace WTFDashboards.Controllers
         {
             var InventoryCostData = new InventoryData(InventoryCostGroup.Warehouse, 10);
             InventoryCostData.CollectionDataName = "Current";
-            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Inventory Cost By Warehouse");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Inventory By Warehouse");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }
@@ -44,7 +44,7 @@ namespace WTFDashboards.Controllers
             InventoryCostData.CollectionDataName = "Comparison";
             InventoryCostData.PopulateSeriesDataSetsByWarehouse();
             InventoryCostData.AlignSeriesDataSetsByInventoryType();
-            var InventoryCostChart = new InventoryChart(InventoryChartType.CompareByWarehouse, InventoryCostData, "Warehouse Inventory Cost By Type");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.CompareByWarehouse, InventoryCostData, "Warehouse Inventory By Type");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }
@@ -55,7 +55,7 @@ namespace WTFDashboards.Controllers
             InventoryCostData.CollectionDataName = "Comparison";
             InventoryCostData.PopulateSeriesDataSetsByInventoryType();
             InventoryCostData.AlignSeriesDataSetsByWarehouse();
-            var InventoryCostChart = new InventoryChart(InventoryChartType.CompareByInventoryType, InventoryCostData, "Type Inventory Cost By Warehouse");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.CompareByInventoryType, InventoryCostData, "Type Inventory By Warehouse");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }
@@ -64,7 +64,7 @@ namespace WTFDashboards.Controllers
         {
             var InventoryCostData = new InventoryData(InventoryCostGroup.WIP, 10);
             InventoryCostData.CollectionDataName = "WIP";
-            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "WIP Costs");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "WIP");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }
@@ -73,7 +73,7 @@ namespace WTFDashboards.Controllers
         {
             var InventoryCostData = new InventoryData(InventoryCostGroup.Purchased, 10);
             InventoryCostData.CollectionDataName = "Purchased";
-            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Purchased Inventory Costs");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Purchased Inventory");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }
@@ -82,7 +82,7 @@ namespace WTFDashboards.Controllers
         {
             var InventoryCostData = new InventoryData(InventoryCostGroup.Manufactured, 10);
             InventoryCostData.CollectionDataName = "Manufactured";
-            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Manufactured Inventory Costs");
+            var InventoryCostChart = new InventoryChart(InventoryChartType.Performance, InventoryCostData, "Manufactured Inventory");
 
             return (File(InventoryCostChart.chartStream.GetBuffer(), @"image/png"));
         }

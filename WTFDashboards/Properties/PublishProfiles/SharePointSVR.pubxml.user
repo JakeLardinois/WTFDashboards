@@ -52,10 +52,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/16/2015 10:07:52</publishTime>
     </File>
     <File Include="bin/WTFDashboards.dll">
-      <publishTime>07/08/2015 06:30:14</publishTime>
+      <publishTime>09/03/2015 08:13:01</publishTime>
     </File>
     <File Include="bin/WTFDashboards.pdb">
-      <publishTime>07/08/2015 06:30:14</publishTime>
+      <publishTime>09/03/2015 08:13:01</publishTime>
     </File>
     <File Include="Content/html5-reset.css">
       <publishTime>04/20/2015 06:26:05</publishTime>

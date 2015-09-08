@@ -13,15 +13,14 @@ namespace DashboardDataGatherer
     {
         static void Main(string[] args)
         {
+            WODataUploader objWODataUploader;
+            InventoryCostItems objInventoryCostItems;
+            InventoryDataUploader objInventoryDataUploader;
+            JobMachineTransactions objJobMachineTransactions;
+
 
             if (args.Length > 0)
             {
-                WODataUploader objWODataUploader;
-                InventoryCostItems objInventoryCostItems;
-                InventoryDataUploader objInventoryDataUploader;
-                JobMachineTransactions objJobMachineTransactions;
-
-
                 string strArgs = string.Join(" ", args).Remove(0, 1);//joins the initial argument array and removes the first space, else the space is also split into an argument
                 string[] objArgs = strArgs.Split('/');
 
@@ -48,7 +47,7 @@ namespace DashboardDataGatherer
                             break;
                         case 'w':
                         case 'W'://Gathers & Uploads the MP2 Work Order Data
-                            
+
                             objWODataUploader = new WODataUploader();
                             objWODataUploader.UploadWorkOrderData();
                             break;
@@ -58,24 +57,26 @@ namespace DashboardDataGatherer
                             objJobMachineTransactions = new JobMachineTransactions(DateTime.Now, 365);
                             objJobMachineTransactions.UploadNewData();
                             break;
-                        default: //Gathers & Uploads all metrics since no parameter is passed...
-                            
-                            //Uploads the MP2 Work Order Data
-                            objWODataUploader = new WODataUploader();
-                            objWODataUploader.UploadWorkOrderData();
-
-                            //Gathers and Uploads Inventory Cost Data
-                            objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
-                            objInventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
-
-                            //Gathers & Uploads Machine hours and absorbed Overhead per WC
-                            objJobMachineTransactions = new JobMachineTransactions(DateTime.Now, 365);
-                            objJobMachineTransactions.UploadNewData();
+                        default:
+                            Console.WriteLine("Invalid Parameter!!");
+                            DisplayUsage();
                             break;
                     }
                 }
             }
-            
+            else { //Gathers & Uploads all metrics since no parameter is passed...
+                //Uploads the MP2 Work Order Data
+                objWODataUploader = new WODataUploader();
+                objWODataUploader.UploadWorkOrderData();
+
+                //Gathers and Uploads Inventory Cost Data
+                objInventoryCostItems = new InventoryCostItems(InventoryCostSource.SytelineItemWhse);
+                objInventoryDataUploader = new InventoryDataUploader(objInventoryCostItems.InventoryCostMetrics);
+
+                //Gathers & Uploads Machine hours and absorbed Overhead per WC
+                objJobMachineTransactions = new JobMachineTransactions(DateTime.Now, 365);
+                objJobMachineTransactions.UploadNewData();
+            }
         }
 
         private static void DisplayUsage()
