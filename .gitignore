@@ -49,5 +49,6 @@ Temporary Items
 /WTFDashboards/bin
 /WTFDashboards/obj
 
-/packages
+!/packages
+/packages/*
 !/packages/repositories.config
