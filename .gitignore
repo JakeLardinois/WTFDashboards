@@ -41,3 +41,13 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+
+/DashboardDataGatherer/bin
+/DashboardDataGatherer/obj
+
+/WTFDashboards/bin
+/WTFDashboards/obj
+
+/packages
+!/packages/repositories.config
