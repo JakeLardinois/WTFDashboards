@@ -49,6 +49,7 @@ Temporary Items
 /WTFDashboards/bin
 /WTFDashboards/obj
 
+# untracks everything that is in the packages directory except config file
 !/packages
 /packages/*
 !/packages/repositories.config
