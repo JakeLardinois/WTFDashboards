@@ -45,9 +45,13 @@ Temporary Items
 
 /DashboardDataGatherer/bin
 /DashboardDataGatherer/obj
+/DashboardDataGatherer/App.config
 
 /WTFDashboards/bin
 /WTFDashboards/obj
+/WTFDashboards/Web.config
+/WTFDashboards/Web.Debug.config
+/WTFDashboards/Web.Release.config
 
 # untracks everything that is in the packages directory except config file
 !/packages
