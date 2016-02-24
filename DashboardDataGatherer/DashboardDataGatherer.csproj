@@ -166,6 +166,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Dashboard.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.config" />
     <None Include="Dashboard.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Dashboard.edmx</DependentUpon>
